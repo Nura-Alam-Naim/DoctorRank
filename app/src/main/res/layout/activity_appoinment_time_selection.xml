@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <!-- Top Text -->
+    <TextView
+        android:id="@+id/pickTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick a Time"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:textColor="#06a9b1"/>
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp"/>
+
+    <!-- Scrollable Time Slots -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <RadioGroup
+            android:id="@+id/timeSlotRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="25dp"
+            android:background="#">
+
+            <!-- Available Slots -->
+
+            <RadioButton
+                android:id="@+id/timeSlot1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="08:00 AM - 09:00 AM"
+                android:textSize="20dp"
+                android:background="#06a9b1"
+                android:padding="16dp"
+                android:textColor="#ffffff"
+                android:buttonTint="#ffffff"
+                android:layout_marginBottom="12dp"/>
+
+            <RadioButton
+                android:id="@+id/timeSlot2"
+                android:buttonTint="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="09:00 AM - 10:00 AM"
+                android:textSize="20dp"
+                android:background="#06a9b1"
+                android:textColor="#ffffff"
+                android:padding="16dp"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- Booked Slot -->
+            <RadioButton
+                android:id="@+id/timeSlot3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12:00 PM - 01:00 PM (Booked)"
+                android:textSize="20dp"
+                android:padding="16dp"
+                android:enabled="false"
+                android:paintFlags="strikeThruText"
+                android:layout_marginBottom="12dp"/>
+            <RadioButton
+                android:id="@+id/timeSlot4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="01:00 PM - 02:00 PM"
+                android:textSize="20dp"
+                android:background="#06a9b1"
+                android:padding="16dp"
+                android:textColor="#ffffff"
+                android:buttonTint="#ffffff"
+                android:layout_marginBottom="12dp"/>
+
+            <RadioButton
+                android:id="@+id/timeSlot5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="02:00 PM - 03:00 PM"
+                android:textSize="20dp"
+                android:background="#06a9b1"
+                android:padding="16dp"
+                android:textColor="#ffffff"
+                android:buttonTint="#ffffff"
+                android:layout_marginBottom="12dp"/>
+            <!-- Booked Slot -->
+            <RadioButton
+                android:id="@+id/timeSlot6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="03:00 PM - 04:00 PM (Booked)"
+                android:padding="16dp"
+                android:enabled="false"
+                android:paintFlags="strikeThruText"
+                android:layout_marginBottom="12dp"/>
+
+        </RadioGroup>
+    </ScrollView>
+
+    <!-- Bottom Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:textSize="20dp"
+            android:background="#06a9b1"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/confirmButton"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Confirm"
+            android:textSize="20dp"
+            android:background="#06a9b1"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
