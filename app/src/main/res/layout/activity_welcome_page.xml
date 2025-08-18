@@ -16,10 +16,8 @@
         android:text="DoctorRank"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:textColor="#06a9b1
-"
-        android:gravity="center"
-        android:layout_marginTop="50dp"/>
+        android:textColor="#06a9b1"
+        android:gravity="center_horizontal"/>
 
     <!-- App Logo -->
     <ImageView
@@ -27,8 +25,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:src="@drawable/log0"
-        android:layout_marginBottom="150dp"
-        android:layout_marginTop="150dp"
+
     android:contentDescription="App Logo"/>
 
     <!-- Spacer to push button to bottom -->
