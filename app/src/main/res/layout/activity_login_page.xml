@@ -52,45 +52,65 @@
             android:layout_marginBottom="3dp"/>
     </LinearLayout>
 
-    <LinearLayout
+
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:layout_marginBottom="3dp">
+        android:padding="10dp">
 
+    <!--first row-->
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="Enter Your Email"
-            android:gravity="center"
-            android:textSize="25dp"
-            android:textColor="@color/black"
-            android:textStyle="italic"/>
-
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username : "
+            android:textStyle="bold"
+            android:textSize="18dp"/>
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:hint="Email" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Your Email"
+            android:layout_weight="1"/>
 
+    </TableRow>
+
+    <!--second row-->
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="Password"
-            android:gravity="center"
-            android:textSize="25dp"
-            android:textColor="@color/black"
-            android:textStyle="italic"/>
-
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password : "
+            android:textStyle="bold"
+            android:textSize="18dp"/>
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:hint="Password"/>
-    </LinearLayout>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Your Password"
+            android:layout_weight="1"/>
+
+    </TableRow>
+    </TableLayout>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Remember Login "/>
+
+    <!--sixth row-->
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Remember Password "/>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
