@@ -12,8 +12,9 @@
         android:id="@+id/logoImageView"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@drawable/log0"
-        android:layout_marginBottom="50dp"/>
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/log0"/>
+
     <TextView
         android:id="@+id/successMessage"
         android:layout_width="wrap_content"

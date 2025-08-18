@@ -4,42 +4,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:background="@color/white"
     android:padding="24dp">
 
     <!-- App Name -->
-    <TextView
-        android:id="@+id/appNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DoctorRank"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:textColor="#06a9b1"
-        android:gravity="center_horizontal"/>
 
     <!-- App Logo -->
     <ImageView
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
         android:id="@+id/logoImageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:src="@drawable/log0"
 
-    android:contentDescription="App Logo"/>
+        android:contentDescription="App Logo"/>
+    <TextView
+        android:layout_marginTop="25dp"
+        android:id="@+id/appNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="DoctorRank"
+        android:textColor="#06a9b1"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Find your best doctor"
+        android:textColor="#06a9b1"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"/>
 
     <!-- Spacer to push button to bottom -->
 
     <!-- Get Started Button -->
     <Button
+        android:layout_marginTop="260dp"
+        android:layout_gravity="center"
         android:id="@+id/getStartedButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Get Started"
         android:textSize="18sp"
         android:textColor="#ffffff"
-        android:background="#06a9b1
-"
-        android:layout_marginBottom="50dp" />
+        android:background="#06a9b1"/>
 
 </LinearLayout>
