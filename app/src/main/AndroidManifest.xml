@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DoctorRank223410">
         <activity
+            android:name=".Dashboard"
+            android:exported="false" />
+        <activity
             android:name=".PatientProfileEditPage"
             android:exported="false" />
         <activity
