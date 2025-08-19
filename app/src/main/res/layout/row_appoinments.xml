@@ -11,6 +11,13 @@
         android:textSize="15sp"
         android:gravity="center"/>
     <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:text="time"
+        android:textSize="15sp"
+        android:gravity="center"/>
+    <TextView
         android:id="@+id/tvDName"
         android:layout_width="0dp"
         android:layout_weight="1"
