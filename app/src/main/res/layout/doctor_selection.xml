@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:padding="12dp"
+    android:background="#06a9b1"
+    android:layout_marginBottom="12dp">
+    <!-- Doctor Photo -->
+    <ImageView
+        android:id="@+id/doctorPhoto"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="12dp"/>
+
+    <!-- Doctor Name -->
+    <TextView
+        android:id="@+id/doctorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dr. John Smith"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:layout_toEndOf="@id/doctorPhoto"
+        android:layout_alignTop="@id/doctorPhoto"/>
+
+    <!-- Doctor Rating -->
+    <RatingBar
+        android:id="@+id/doctorRating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="0.1"
+        android:rating="4"
+        android:isIndicator="true"
+        android:progressTint="#f29e23"
+        android:secondaryProgressTint="#ffffff"
+        android:layout_toEndOf="@id/doctorPhoto"
+        android:layout_below="@id/doctorName"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Doctor Info -->
+    <TextView
+        android:id="@+id/doctorInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Specialist "
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:layout_toEndOf="@id/doctorPhoto"
+        android:layout_below="@id/doctorRating"
+        android:layout_marginTop="4dp"/>
+<!--    room no-->
+    <TextView
+        android:id="@+id/doctorRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Room No: "
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:layout_toEndOf="@id/doctorInfo"
+        android:layout_below="@id/doctorRating"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="20dp"/>
+
+
+
+    <!-- Profile Button -->
+    <Button
+        android:id="@+id/profile"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/doctorInfo"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="91dp"
+        android:layout_marginTop="9dp"
+        android:backgroundTint="#ffffff"
+        android:text="Profile"
+        android:textColor="#06a9b1"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+    <!-- Book Now Button -->
+    <Button
+        android:id="@+id/bookNow"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/doctorInfo"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="9dp"
+        android:layout_toEndOf="@id/profile"
+        android:backgroundTint="#ffffff"
+        android:text="Book Now"
+        android:textColor="#06a9b1"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+</RelativeLayout>
