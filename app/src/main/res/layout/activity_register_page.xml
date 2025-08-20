@@ -61,6 +61,7 @@
                 android:textStyle="bold"
                 android:textSize="18dp"/>
             <EditText
+                android:id="@+id/etName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
@@ -79,6 +80,7 @@
                 android:textStyle="bold"
                 android:textSize="18dp"/>
             <EditText
+                android:id="@+id/etEmail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
@@ -97,6 +99,7 @@
                 android:textStyle="bold"
                 android:textSize="18dp"/>
             <EditText
+                android:id="@+id/etPhone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
@@ -115,6 +118,7 @@
                 android:textStyle="bold"
                 android:textSize="18dp"/>
             <EditText
+                android:id="@+id/etPassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
@@ -133,6 +137,7 @@
                 android:textStyle="bold"
                 android:textSize="18dp"/>
             <EditText
+                android:id="@+id/etRePassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
@@ -151,11 +156,13 @@
                 android:textStyle="bold"
                 android:textSize="18dp"/>
             <CheckBox
+                android:id="@+id/cbMale"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Male "/>
             <CheckBox
+                android:id="@+id/cbFemale"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -171,6 +178,7 @@
         android:gravity="center"
         android:layout_marginBottom="3dp">
         <Button
+            android:id="@+id/btCreateAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create Account"
@@ -198,6 +206,7 @@
         android:layout_height="wrap_content"
         android:gravity="center">
         <Button
+            android:id="@+id/btLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"

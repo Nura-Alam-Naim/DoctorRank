@@ -33,11 +33,12 @@
 
 
         <ImageView
+            android:id="@+id/ivDoctorPicture"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_gravity="center"
-            android:contentDescription="Logo"
+            android:contentDescription="Doctor Profile Picture"
             android:src="@drawable/profile_placeholder" />
 
 
@@ -48,6 +49,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvDoctorName"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -58,6 +60,7 @@
                 android:layout_marginBottom="3dp"/>
 
             <TextView
+                android:id="@+id/tvDoctorQualification"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -75,6 +78,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tvDoctorRating"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -83,6 +87,7 @@
             android:textColor="@color/black"
             android:textSize="25dp"/>
         <TextView
+            android:id="@+id/tvDoctorBMDCno"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -100,6 +105,7 @@
         android:padding="30dp">
 
         <TextView
+            android:id="@+id/tvDoctorVisitingHours"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -116,6 +122,7 @@
         android:layout_marginBottom="20dp">
 
         <TextView
+            android:id="@+id/tvDoctorCharge"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -133,12 +140,14 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Back"
             android:backgroundTint="#000000"
             android:layout_weight="1"/>
         <Button
+            android:id="@+id/btBookNow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Book Now"
@@ -146,11 +155,5 @@
             android:layout_weight="1"/>
 
     </LinearLayout>
-
-
-
-
-
-
 
 </LinearLayout>

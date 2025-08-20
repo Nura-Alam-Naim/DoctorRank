@@ -11,12 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoctorRank223410">
-        <activity
-            android:name=".Dashboard"
-            android:exported="false" />
-        <activity
-            android:name=".PatientProfileEditPage"
-            android:exported="false" />
+
+        <!--Defined ID and added to Manifest -->
+
         <activity
             android:name=".Welcome"
             android:exported="true">
@@ -27,6 +24,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".confirmation"
+            android:exported="true" />
+        <activity
             android:name=".UpcomingAppointment"
             android:exported="true" />
         <activity
@@ -36,11 +39,22 @@
             android:name=".DateSelection"
             android:exported="true" />
         <activity
-            android:name=".confirmation"
+            android:name=".DoctorProfilePage"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".PatientProfileEditPage"
             android:exported="true" />
+        <activity
+            android:name=".PatientProfilePage"
+            android:exported="true" />
+        <activity
+            android:name=".RegisterPage"
+            android:exported="true" />
+        <activity
+            android:name=".LoginPage"
+            android:exported="true" />
+
+        <!--         END            -->
     </application>
 
 </manifest>

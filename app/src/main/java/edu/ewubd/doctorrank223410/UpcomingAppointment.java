@@ -1,6 +1,11 @@
 package edu.ewubd.doctorrank223410;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,15 +15,17 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class UpcomingAppointment extends AppCompatActivity {
 
+    private ListView lvUpComingAppointments ;
+    private Button btBack ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_upcoming_appoinment);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        lvUpComingAppointments = findViewById(R.id.lvUpComingAppointments) ;
+
+        btBack = findViewById(R.id.btBack) ;
+
     }
 }

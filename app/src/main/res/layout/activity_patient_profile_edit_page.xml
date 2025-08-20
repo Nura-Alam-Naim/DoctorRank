@@ -27,6 +27,7 @@ tools:context=".PatientProfileEditPage">
     android:layout_marginTop="3dp"/>
 
 <ImageView
+    android:id="@+id/ivProfilePicture"
     android:layout_width="150dp"
     android:layout_height="150dp"
     android:layout_gravity="center"
@@ -43,6 +44,7 @@ tools:context=".PatientProfileEditPage">
     android:orientation="vertical">
 
     <EditText
+        android:id="@+id/etName"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
@@ -71,12 +73,14 @@ tools:context=".PatientProfileEditPage">
                 android:textStyle="bold"
                 android:textSize="18dp"/>
             <CheckBox
+                android:id="@+id/cbMale"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Male"
                 android:textStyle="bold"/>
             <CheckBox
+                android:id="@+id/cbFemale"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -98,6 +102,7 @@ tools:context=".PatientProfileEditPage">
                 android:textStyle="bold"
                 android:textSize="18dp"/>
             <EditText
+                android:id="@+id/etAge"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
@@ -110,6 +115,7 @@ tools:context=".PatientProfileEditPage">
                 android:textStyle="bold"
                 android:textSize="18dp"/>
             <EditText
+                android:id="@+id/etHeight"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
@@ -122,6 +128,7 @@ tools:context=".PatientProfileEditPage">
                 android:textStyle="bold"
                 android:textSize="18dp"/>
             <EditText
+                android:id="@+id/etWeight"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
@@ -132,6 +139,7 @@ tools:context=".PatientProfileEditPage">
 
 
     <EditText
+        android:id="@+id/etPhone"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
@@ -141,6 +149,7 @@ tools:context=".PatientProfileEditPage">
         android:layout_marginBottom="10dp" />
 
     <EditText
+        android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
@@ -160,6 +169,7 @@ tools:context=".PatientProfileEditPage">
 
 
         <EditText
+            android:id="@+id/etAddress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Address"
@@ -177,18 +187,21 @@ tools:context=".PatientProfileEditPage">
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btBack"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Back"
             android:backgroundTint="#000000"
             android:layout_weight="1"/>
         <Button
+            android:id="@+id/btHome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Home"
             android:backgroundTint="#000000"
             android:layout_weight="1"/>
         <Button
+            android:id="@+id/btSave"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Save"

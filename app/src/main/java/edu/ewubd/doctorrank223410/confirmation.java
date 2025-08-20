@@ -1,6 +1,10 @@
 package edu.ewubd.doctorrank223410;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,15 +14,28 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class confirmation extends AppCompatActivity {
 
+    private ImageView ivLogo ;
+    private TextView tvSuccessMessage, tvAppointmentDate, tvAppointmentTime, tvDoctorName, tvSpecialization, tvPosition, tvExperience, tvAddress, tvRoomNumber ;
+    private Button btHome ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_confirmation);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        ivLogo = findViewById(R.id.ivLogo) ;
+
+        tvSuccessMessage = findViewById(R.id.tvSuccessMessage) ;
+        tvAppointmentDate = findViewById(R.id.tvAppointmentDate) ;
+        tvAppointmentTime = findViewById(R.id.tvAppointmentTime) ;
+        tvDoctorName = findViewById(R.id.tvDoctorName) ;
+        tvSpecialization = findViewById(R.id.tvSpecialization) ;
+        tvPosition = findViewById(R.id.tvPosition) ;
+        tvExperience = findViewById(R.id.tvExperience) ;
+        tvAddress = findViewById(R.id.tvAddress) ;
+        tvRoomNumber = findViewById(R.id.tvRoomNumber) ;
+
+        btHome = findViewById(R.id.btHome) ;
+
     }
 }

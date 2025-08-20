@@ -33,13 +33,5 @@ public class LoginPage extends AppCompatActivity {
         btRegister = findViewById(R.id.btRegister) ;
 
 
-
-
-
-
-
-
-
-
     }
 }

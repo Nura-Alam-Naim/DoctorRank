@@ -11,14 +11,15 @@
     android:padding="20dp"
     android:gravity="center">
     <ImageView
-        android:id="@+id/logoImageView"
+        android:id="@+id/ivLogo"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginBottom="50dp"
+        android:contentDescription="Logo"
         android:src="@drawable/log0"/>
 
     <TextView
-        android:id="@+id/successMessage"
+        android:id="@+id/tvSuccessMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Successfully Booked"
@@ -36,13 +37,13 @@
         android:padding="10dp"
         android:layout_marginBottom="20dp">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Appointment Date: "
+                android:text="Appointment  Date: "
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
@@ -61,7 +62,7 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <TextView
@@ -77,7 +78,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Time"
+                android:text="time"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
@@ -95,7 +96,7 @@
         android:layout_marginBottom="30dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <TextView
@@ -119,13 +120,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Specialization:  "
+                android:text="Specialization: "
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:textColor="#ffffff"
@@ -135,14 +136,14 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Specialization"
+                android:text="specialization"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
                 android:layout_marginBottom="8dp"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <TextView
@@ -158,7 +159,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Position"
+                android:text="position"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
@@ -166,7 +167,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <TextView
@@ -182,14 +183,14 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="XP"
+                android:text="experience"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
                 android:layout_marginBottom="8dp"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <TextView
@@ -205,14 +206,14 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Address"
+                android:text="address"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
                 android:layout_marginBottom="8dp"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <TextView
@@ -224,11 +225,11 @@
                 android:textColor="#ffffff"
                 android:layout_marginBottom="8dp"/>
             <TextView
-                android:id="@+id/tvRoomNo"
+                android:id="@+id/tvRoomNumber"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="room"
+                android:text="room no"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
@@ -238,7 +239,7 @@
 
     <!-- Home Button -->
     <Button
-        android:id="@+id/homeButton"
+        android:id="@+id/btHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Home"

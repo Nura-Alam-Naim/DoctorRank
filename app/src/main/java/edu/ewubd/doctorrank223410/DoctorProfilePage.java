@@ -1,6 +1,10 @@
 package edu.ewubd.doctorrank223410;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,15 +14,27 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class DoctorProfilePage extends AppCompatActivity {
 
+    private ImageView ivDoctorPicture ;
+    private TextView tvDoctorName, tvDoctorQualification, tvDoctorRating, tvDoctorBMDCno, tvDoctorVisitingHours, tvDoctorCharge;
+    private Button btBack, btBookNow ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_doctor_profile_page);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        ivDoctorPicture = findViewById(R.id.ivDoctorPicture) ;
+
+        tvDoctorName = findViewById(R.id.tvDoctorName) ;
+        tvDoctorQualification = findViewById(R.id.tvDoctorQualification) ;
+        tvDoctorRating = findViewById(R.id.tvDoctorRating) ;
+        tvDoctorBMDCno = findViewById(R.id.tvDoctorBMDCno) ;
+        tvDoctorVisitingHours = findViewById(R.id.tvDoctorVisitingHours) ;
+        tvDoctorCharge = findViewById(R.id.tvDoctorCharge) ;
+
+        btBack = findViewById(R.id.btBack) ;
+        btBookNow = findViewById(R.id.btBookNow) ;
+
+
     }
 }
