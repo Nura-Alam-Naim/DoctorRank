@@ -70,7 +70,9 @@
             android:text="Username : "
             android:textStyle="bold"
             android:textSize="18dp"/>
+
         <EditText
+            android:id="@+id/etUsername"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Enter Your Email"
@@ -90,6 +92,7 @@
             android:textStyle="bold"
             android:textSize="18dp"/>
         <EditText
+            android:id="@+id/etPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Enter Your Password"
@@ -99,12 +102,14 @@
     </TableLayout>
 
     <CheckBox
+        android:id="@+id/cbRememberLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Remember Login "/>
 
     <!--sixth row-->
     <CheckBox
+        android:id="@+id/cbRememberPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -118,6 +123,7 @@
         android:gravity="center"
         android:layout_marginBottom="3dp">
         <Button
+            android:id="@+id/btLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
@@ -146,6 +152,7 @@
         android:layout_height="wrap_content"
         android:gravity="center">
         <Button
+            android:id="@+id/btRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Register"
