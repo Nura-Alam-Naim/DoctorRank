@@ -1,10 +1,15 @@
 package edu.ewubd.doctorrank223410;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -26,37 +31,39 @@ public class DoctorListAdapter extends ArrayAdapter<T_DoctorInfo> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.doctor_selection, parent, false);
+        View rowView = inflater.inflate(R.layout.doctor_adapter_row, parent, false);
 
-//        TextView tvSN = rowView.findViewById(R.id.tvSerial);
-//        TextView tvName = rowView.findViewById(R.id.tvName);
-//        EditText etRemark = rowView.findViewById(R.id.etRemark);
-//        RadioButton rbAbsent=rowView.findViewById(R.id.rbAbsent);
-//        RadioButton rbPresent=rowView.findViewById(R.id.rbPresent);
-//        //TextView eventType = rowView.findViewById(R.id.tvEventType);
+         T_DoctorInfo doctor = values.get(position);
 
-//        StudentAttendence sa = values.get(position);
-//        tvSN.setText(""+(position+1));
-//        tvName.setText(sa.name);
-//        etRemark.setText(sa.remark);
-//        rbPresent.setChecked(sa.status);
-//        rbAbsent.setChecked(!sa.status);
+        // Bind XML views
+        TextView doctorName = rowView.findViewById(R.id.doctorName);
+        TextView doctorInfo = rowView.findViewById(R.id.doctorInfo);
+        TextView doctorRoom = rowView.findViewById(R.id.doctorRoom);
+        RatingBar doctorRating = rowView.findViewById(R.id.doctorRating);
+        ImageView doctorPhoto = rowView.findViewById(R.id.doctorPhoto);
 
+        Button profileBtn = rowView.findViewById(R.id.profile);
+        Button bookNowBtn = rowView.findViewById(R.id.bookNow);
 
-//        rbPresent.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                values.get(position).status=true;
-//            }
-//        });
-//
-//        rbAbsent.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                values.get(position).status=false;
-//            }
-//        });
+        // Set values
+        doctorName.setText(doctor.name);
+        doctorInfo.setText(doctor.speciality);
+        doctorRoom.setText("Room No: " + doctor.roomNo);
+        doctorRating.setRating(doctor.rating);
 
+        profileBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DoctorProfilePage.class);
+            intent.putExtra("doctorId", doctor.name); // pass doctor info
+            context.startActivity(intent);
+        });
+
+        // Book Now button action
+        bookNowBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DateSelection.class);
+            intent.putExtra("doctorId", doctor.name);
+            intent.putExtra("doctorName", doctor.speciality);
+            context.startActivity(intent);
+        });
         return rowView;
     }
 }

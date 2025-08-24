@@ -26,7 +26,7 @@ public class TimeListAdapter extends ArrayAdapter<T_DoctorInfo> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.doctor_selection, parent, false);
+        View rowView = inflater.inflate(R.layout.doctor_adapter_row, parent, false);
 
 //        TextView tvSN = rowView.findViewById(R.id.tvSerial);
 //        TextView tvName = rowView.findViewById(R.id.tvName);
