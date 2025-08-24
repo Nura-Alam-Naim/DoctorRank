@@ -15,7 +15,7 @@ public class RegisterPage extends AppCompatActivity {
     private EditText etName, etEmail, etPhone, etPassword, etRePassword;
     private CheckBox cbMale, cbFemale;
     private Button btCreateAccount, btLogin;
-    SharedPreferences sp,log;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,20 +80,19 @@ public class RegisterPage extends AppCompatActivity {
             return;
         }
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString("name_" + email, name);  // Save name with unique key
-        editor.putString("email_" + email, email);  // Save email with unique key
-        editor.putString("phone_" + email, phone);  // Save phone with unique key
-        editor.putString("password_" + email, pass);  // Save password with unique key
+        editor.putString("name_" + email, name);
+        editor.putString("email_" + email, email);
+        editor.putString("phone_" + email, phone);
+        editor.putString("password_" + email, pass);
         editor.putString("gender_" + email, cbMale.isChecked()?"Male":"Female");
-        editor.putString("isRememberLogin_"+email, "false");
-        editor.putString("isRememberPass_"+email, "false");
         editor.apply();
 
         Toast.makeText(RegisterPage.this, "Account created successfully", Toast.LENGTH_SHORT).show();
-        log=this.getSharedPreferences("my_pr", MODE_PRIVATE);
-        SharedPreferences.Editor ed = log.edit();
-        ed.putBoolean("isLogin", true);
-        ed.apply();
+
+
+        editor.putBoolean("rememberPass", true);
+        editor.putString("password", pass);
+        editor.putString("email", email);
         finish();
         return;
     }
