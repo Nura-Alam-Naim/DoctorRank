@@ -15,7 +15,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class Welcome extends AppCompatActivity {
 
-    private ImageView ivLogo;
     private Button btGetStarted;
     private SharedPreferences sp;
     @Override
@@ -33,7 +32,6 @@ public class Welcome extends AppCompatActivity {
         }
         setContentView(R.layout.activity_welcome);
 
-        ivLogo = findViewById(R.id.ivLogo);
         btGetStarted = findViewById(R.id.btGetStarted);
         //ivLogo.setImageResource(R.drawable.logo);
         btGetStarted.setOnClickListener(new View.OnClickListener() {
