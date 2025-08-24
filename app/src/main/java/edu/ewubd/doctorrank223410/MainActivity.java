@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
         btMyAppoinments = findViewById(R.id.btMyAppoinments) ;
         setDateAndDay();
 
-        sp=getSharedPreferences("my_pr", MODE_PRIVATE);
-        boolean isLogin = sp.getBoolean("isLogin", false);
+        sp=this.getSharedPreferences("Login", MODE_PRIVATE);
+        boolean isLogin = sp.getBoolean("rememberLogin", false);
 
         if(isLogin)
             btProfile.setText("Profile");
@@ -113,9 +113,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
-
 
         DocList=new DoctorListAdapter(this,DoctorInfo);
         lvDoctorList.setAdapter(DocList);

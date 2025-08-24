@@ -13,17 +13,6 @@
     android:padding="30dp"
     tools:context=".RegisterPage">
 
-
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:contentDescription="Logo"
-        android:src="@drawable/profile_placeholder"
-        android:layout_marginBottom="20dp"/>
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,7 +31,15 @@
             android:layout_marginBottom="3dp"/>
 
     </LinearLayout>
-
+    <ImageView
+        android:id="@+id/imgProfilePic"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:contentDescription="Logo"
+        android:src="@drawable/dummy"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"/>
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -155,18 +152,25 @@
                 android:text="Gender : "
                 android:textStyle="bold"
                 android:textSize="18dp"/>
-            <CheckBox
-                android:id="@+id/cbMale"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            <RadioGroup
+                android:id="@+id/rgGender"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Male "/>
-            <CheckBox
-                android:id="@+id/cbFemale"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Female "/>
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/cbMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"
+                    android:layout_marginRight="10dp"/>
+
+                <RadioButton
+                    android:id="@+id/cbFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female" />
+            </RadioGroup>
 
         </TableRow>
 
