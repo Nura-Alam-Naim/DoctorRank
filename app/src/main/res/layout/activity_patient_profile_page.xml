@@ -32,7 +32,7 @@
         android:layout_height="150dp"
         android:layout_gravity="center"
         android:contentDescription="Profile Picture"
-        android:src="@drawable/profile_placeholder"
+        android:src="@drawable/dummy"
         android:layout_marginBottom="10dp"/>
 
 

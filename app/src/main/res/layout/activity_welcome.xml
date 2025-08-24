@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/logo"
+        android:src="@drawable/dummy"
         android:contentDescription="App Logo"/>
     <TextView
         android:layout_marginTop="25dp"

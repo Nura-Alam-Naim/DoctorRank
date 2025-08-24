@@ -38,8 +38,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_gravity="center"
-            android:contentDescription="Doctor Profile Picture"
-            android:src="@drawable/profile_placeholder" />
+            android:contentDescription="Doctor Profile Picture"/>
+<!--            android:src="@drawable/profile_placeholder" />-->
 
 
         <LinearLayout
