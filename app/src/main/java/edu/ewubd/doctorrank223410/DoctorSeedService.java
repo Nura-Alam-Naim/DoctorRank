@@ -47,11 +47,8 @@ public class DoctorSeedService extends JobIntentService {
                     }
                     doctors.add(d);
                 }
-
                 DoctorsDB.get(getApplicationContext()).saveAll(doctors);
-
-                getSharedPreferences("my_pr", MODE_PRIVATE)
-                        .edit().putBoolean("doctors_seeded", true).apply();
+                getSharedPreferences("my_pr", MODE_PRIVATE).edit().putBoolean("seeded", true).apply();
             }
         } catch (Exception e) {
             e.printStackTrace();
