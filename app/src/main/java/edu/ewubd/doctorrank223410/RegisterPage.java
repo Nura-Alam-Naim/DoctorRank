@@ -6,16 +6,17 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RegisterPage extends AppCompatActivity {
 
-    private EditText etName, etEmail, etPhone, etPassword, etRePassword;
-    private CheckBox cbMale, cbFemale;
+    private EditText etName, etEmail, etPhone, etPassword, etRePassword, etdob, etHeight, etWeight;
+    private RadioButton cbMale, cbFemale;
     private Button btCreateAccount, btLogin;
-    SharedPreferences sp;
+    private firebase mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +28,15 @@ public class RegisterPage extends AppCompatActivity {
         etPhone = findViewById(R.id.etPhone);
         etPassword = findViewById(R.id.etPassword);
         etRePassword = findViewById(R.id.etRePassword);
+        etdob=findViewById(R.id.etDOB);
+        etHeight=findViewById(R.id.etHeight);
+        etWeight=findViewById(R.id.etWeight);
 
         cbMale = findViewById(R.id.cbMale);
         cbFemale = findViewById(R.id.cbFemale);
 
         btCreateAccount = findViewById(R.id.btCreateAccount);
         btLogin = findViewById(R.id.btLogin);
-
-        sp = getSharedPreferences("Login", MODE_PRIVATE); // SharedPreferences to store user data
 
         btCreateAccount.setOnClickListener(v -> {
             validateFields();
@@ -54,8 +56,11 @@ public class RegisterPage extends AppCompatActivity {
         String pass = etPassword.getText().toString().trim();
         String rePass = etRePassword.getText().toString().trim();
         String phone=etPhone.getText().toString().trim();
+        String dob=etdob.getText().toString().trim();
+        String height=etHeight.getText().toString().trim();
+        String weight=etWeight.getText().toString().trim();
 
-        if (name.length() < 5) {
+        if (name.length() < 4) {
             Toast.makeText(this, "Invalid Name", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -79,22 +84,8 @@ public class RegisterPage extends AppCompatActivity {
             Toast.makeText(this, "Please select gender", Toast.LENGTH_SHORT).show();
             return;
         }
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString("name_" + email, name);
-        editor.putString("email_" + email, email);
-        editor.putString("phone_" + email, phone);
-        editor.putString("password_" + email, pass);
-        editor.putString("gender_" + email, cbMale.isChecked()?"Male":"Female");
-        editor.apply();
-
         Toast.makeText(RegisterPage.this, "Account created successfully", Toast.LENGTH_SHORT).show();
-
-
-        editor.putBoolean("rememberPass", true);
-        editor.putString("password", pass);
-        editor.putString("email", email);
         finish();
-        return;
     }
 
     public boolean isValidEmailAddress(String email) {
