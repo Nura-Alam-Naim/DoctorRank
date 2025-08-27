@@ -23,29 +23,38 @@ public class LoginPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        // ✅ If already logged in, go straight to main
         if (currentUser != null) {
-            // already logged in, skip login UI
             startActivity(new Intent(this, MainActivity.class));
+            finish();
             return;
         }
+
         sp = getSharedPreferences("login", MODE_PRIVATE);
+
         boolean rememberLogin = sp.getBoolean("rememberLogin", false);
         if (rememberLogin) {
             String email = sp.getString("email", "");
             String password = sp.getString("password", "");
-            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener( task -> {
-                if (task.isSuccessful()) {
-                    Toast.makeText(LoginPage.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(LoginPage.this, MainActivity.class);
-                    startActivity(i);
-                    finish();
-                }
-            });
-            return;
+            if (!email.isEmpty() && !password.isEmpty()) {
+                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(LoginPage.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(LoginPage.this, MainActivity.class));
+                        finish();
+                    }
+                });
+                return;
+            }
         }
 
+        // Show login UI
         setContentView(R.layout.activity_login_page);
+
         etEmail = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         cbRememberLogin = findViewById(R.id.cbRememberLogin);
@@ -55,17 +64,24 @@ public class LoginPage extends AppCompatActivity {
 
         boolean rememberPass = sp.getBoolean("rememberPass", false);
         if (rememberPass) {
-            etPassword.setText(sp.getString("password", ""));
             etEmail.setText(sp.getString("email", ""));
+            etPassword.setText(sp.getString("password", ""));
         }
 
-        String enteredEmail = etEmail.getText().toString().trim();
-        String enteredPassword = etPassword.getText().toString().trim();
-
+        // ✅ Fix: fetch input only when login button is clicked
         btLogin.setOnClickListener(v -> {
-            mAuth.signInWithEmailAndPassword(enteredEmail, enteredPassword).addOnCompleteListener(LoginPage.this, task -> {
+            String enteredEmail = etEmail.getText().toString().trim();
+            String enteredPassword = etPassword.getText().toString().trim();
+
+            if (enteredEmail.isEmpty() || enteredPassword.isEmpty()) {
+                Toast.makeText(LoginPage.this, "Please enter email and password", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            mAuth.signInWithEmailAndPassword(enteredEmail, enteredPassword).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     Toast.makeText(LoginPage.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
+
                     SharedPreferences.Editor editor = sp.edit();
                     if (cbRememberLogin.isChecked() || cbRememberPass.isChecked()) {
                         editor.putBoolean("rememberLogin", cbRememberLogin.isChecked());
@@ -76,20 +92,22 @@ public class LoginPage extends AppCompatActivity {
                     } else {
                         editor.putBoolean("rememberLogin", false);
                         editor.putBoolean("rememberPass", false);
+                        editor.remove("email");
+                        editor.remove("password");
                         editor.apply();
                     }
-                    Intent i = new Intent(LoginPage.this, MainActivity.class);
-                    startActivity(i);
+
+                    startActivity(new Intent(LoginPage.this, MainActivity.class));
                     finish();
                 } else {
-                    Toast.makeText(LoginPage.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginPage.this, "Invalid Credentials: " +
+                            (task.getException() != null ? task.getException().getMessage() : ""), Toast.LENGTH_LONG).show();
                 }
             });
         });
 
         btRegister.setOnClickListener(v -> {
-            Intent j = new Intent(LoginPage.this, RegisterPage.class);
-            startActivity(j);
+            startActivity(new Intent(LoginPage.this, RegisterPage.class));
             finish();
         });
     }
