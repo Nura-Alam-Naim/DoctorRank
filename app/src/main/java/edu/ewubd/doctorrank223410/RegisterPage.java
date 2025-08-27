@@ -16,7 +16,7 @@ public class RegisterPage extends AppCompatActivity {
     private EditText etName, etEmail, etPhone, etPassword, etRePassword, etdob, etHeight, etWeight;
     private RadioButton cbMale, cbFemale;
     private Button btCreateAccount, btLogin;
-    private firebase mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
