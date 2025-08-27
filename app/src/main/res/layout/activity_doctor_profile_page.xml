@@ -10,7 +10,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#06a9b1"
-    android:padding="30dp"
+    android:padding="20dp"
     tools:context=".DoctorProfilePage">
 
     <TextView

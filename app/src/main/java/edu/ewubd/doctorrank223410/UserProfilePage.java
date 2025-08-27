@@ -58,7 +58,6 @@ public class UserProfilePage extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     T_Users user = task.getResult().getValue(T_Users.class);
                     if (user != null) {
-
                         tvName.setText(user.name);
                         tvEmail.setText(user.email);
                         tvPhone.setText(user.phone);

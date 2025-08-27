@@ -23,6 +23,10 @@ public class Welcome extends AppCompatActivity {
 
         sp=getSharedPreferences("my_pr", MODE_PRIVATE);
         boolean isDone=sp.getBoolean("isDone", false);
+        boolean seeded = sp.getBoolean("seeded", false);
+        if (!seeded) {
+            DoctorSeedService.enqueue(this);
+        }
         if(isDone)
         {
             Intent i=new Intent(Welcome.this, MainActivity.class);
