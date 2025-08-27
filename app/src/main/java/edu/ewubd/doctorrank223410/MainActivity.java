@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -43,17 +46,18 @@ public class MainActivity extends AppCompatActivity {
         btMyAppoinments = findViewById(R.id.btMyAppoinments) ;
         setDateAndDay();
 
-        sp=this.getSharedPreferences("Login", MODE_PRIVATE);
-        boolean isLogin = sp.getBoolean("rememberLogin", false);
-
-        if(isLogin)
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
             btProfile.setText("Profile");
-        else
+        } else {
             btProfile.setText("Login");
+        }
+
+
         btProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isLogin)
+                if(currentUser != null)
                 {
                     Intent i=new Intent(MainActivity.this, UserProfilePage.class);
                     startActivity(i);
@@ -69,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         btUpcomingAppointments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isLogin)
+                if(currentUser != null)
                 {
                     Intent i=new Intent(MainActivity.this, UpcomingAppointment.class);
                     startActivity(i);
@@ -86,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         btMyAppoinments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isLogin)
+                if(currentUser != null)
                 {
                     Intent i=new Intent(MainActivity.this, PastAppointment.class);
                     startActivity(i);

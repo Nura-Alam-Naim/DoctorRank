@@ -23,6 +23,12 @@ public class LoginPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            // already logged in, skip login UI
+            startActivity(new Intent(this, MainActivity.class));
+            return;
+        }
         sp = getSharedPreferences("login", MODE_PRIVATE);
         boolean rememberLogin = sp.getBoolean("rememberLogin", false);
         if (rememberLogin) {
