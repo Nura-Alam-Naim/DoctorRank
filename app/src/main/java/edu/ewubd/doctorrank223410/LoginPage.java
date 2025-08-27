@@ -34,7 +34,7 @@ public class LoginPage extends AppCompatActivity {
         if (rememberLogin) {
             String email = sp.getString("email", "");
             String password = sp.getString("password", "");
-            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginPage.this, task -> {
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener( task -> {
                 if (task.isSuccessful()) {
                     Toast.makeText(LoginPage.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(LoginPage.this, MainActivity.class);

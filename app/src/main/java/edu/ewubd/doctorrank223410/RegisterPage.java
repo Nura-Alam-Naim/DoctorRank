@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -156,28 +157,74 @@ public class RegisterPage extends AppCompatActivity {
         String gender= cbMale.isChecked() ? "Male" : "Female";
 
         mAuth = FirebaseAuth.getInstance();
-        mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(RegisterPage.this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful())
-                {
-                    Toast.makeText(RegisterPage.this, "Account created successfully", Toast.LENGTH_SHORT).show();
-                    FirebaseUser firebaseUser = task.getResult().getUser();
-                    FDB=FirebaseDatabase.getInstance();
-                    ref=FDB.getReference("Users");
-                        assert firebaseUser != null;
-                        String userId = firebaseUser.getUid();
-                    T_Users user=new T_Users(name,email,phone,pass,gender,dob,height,weight,image,userId);
-                    ref.child(userId).setValue(user);
-                    Intent i=new Intent(RegisterPage.this,LoginPage.class);
-                    startActivity(i);
-                    finish();
-                }
-                else {
-                    Toast.makeText(RegisterPage.this, "Email already associated with an account", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+        mAuth.createUserWithEmailAndPassword(email, pass)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d("RegisterPage", "onComplete called. success? " + task.isSuccessful());
+
+                        if (task.isSuccessful()) {
+                            try {
+                                // Safer way: always get current user from FirebaseAuth
+                                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                                if (firebaseUser == null) {
+                                    Log.e("RegisterPage", "firebaseUser is NULL");
+                                    Toast.makeText(RegisterPage.this, "FirebaseUser is null", Toast.LENGTH_LONG).show();
+                                    return;
+                                }
+
+                                String userId = firebaseUser.getUid();
+                                Log.d("RegisterPage", "Got UID: " + userId);
+
+                                Toast.makeText(RegisterPage.this, "Account created successfully", Toast.LENGTH_SHORT).show();
+
+                                // Get database reference
+                                FDB = FirebaseDatabase.getInstance();
+                                ref = FDB.getReference("users");
+                                Log.d("RegisterPage", "DB ref path: " + ref.toString());
+
+                                // Build user object
+                                Log.d("RegisterPage", "Creating T_Users object...");
+                                T_Users user = new T_Users(
+                                        name,
+                                        email,
+                                        phone,
+                                        pass,
+                                        gender,
+                                        dob,
+                                        height,
+                                        weight,
+                                        image,
+                                        userId
+                                );
+                                Log.d("RegisterPage", "T_Users object created: " + user.name);
+
+                                // Save to Firebase
+                                ref.child(userId).setValue(user)
+                                        .addOnSuccessListener(aVoid -> {
+                                            Log.d("RegisterPage", "User saved in DB successfully");
+                                            Toast.makeText(RegisterPage.this, "User saved in DB", Toast.LENGTH_SHORT).show();
+                                            // Navigate only after DB write success
+                                            Intent i = new Intent(RegisterPage.this, LoginPage.class);
+                                            startActivity(i);
+                                            finish();
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            Log.e("RegisterPage", "DB write failed", e);
+                                            Toast.makeText(RegisterPage.this, "DB write failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                        });
+
+                            } catch (Exception e) {
+                                Log.e("RegisterPage", "Exception in success block", e);
+                                Toast.makeText(RegisterPage.this, "Crash in success block: " + e.toString(), Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            Exception e = task.getException();
+                            Log.e("RegisterPage", "Auth failed", e);
+                            Toast.makeText(RegisterPage.this, "Auth failed: " + (e != null ? e.getMessage() : "unknown"), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
 
         finish();
     }
