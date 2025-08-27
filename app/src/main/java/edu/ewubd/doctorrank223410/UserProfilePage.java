@@ -37,7 +37,7 @@ public class UserProfilePage extends AppCompatActivity {
         ivProfilePicture = findViewById(R.id.ivProfilePicture);
 
         tvName = findViewById(R.id.tvName);
-        tvDOB = findViewById(R.id.tvAge);
+        tvDOB = findViewById(R.id.tvDOB);
         tvHeight = findViewById(R.id.tvHeight);
         tvWeight = findViewById(R.id.tvWeight);
         tvPhone = findViewById(R.id.tvPhone);
