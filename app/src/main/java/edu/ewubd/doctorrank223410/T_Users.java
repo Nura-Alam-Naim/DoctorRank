@@ -82,7 +82,7 @@ public class T_Users {
     public void setUID(String UID) {
         this.UID = UID;
     }
-
+    public T_Users() {}
     public T_Users(String name, String email, String phone, String password, String gender, String dob, String height, String weight, String  image, String UID)
     {
         this.name = name;
