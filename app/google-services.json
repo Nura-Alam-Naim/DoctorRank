@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "89440069019",
+    "firebase_url": "https://ewubd22360123-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "ewubd22360123",
+    "storage_bucket": "ewubd22360123.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89440069019:android:4ab64429c2d6c2380c6d3e",
+        "android_client_info": {
+          "package_name": "edu.ewubd.doctorrank223410"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFTpKNDqwCSI76lx6T3nGg2sNk6iLTQyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -10,24 +10,35 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class LoginPage extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+public class LoginPage extends AppCompatActivity {
     private EditText etEmail, etPassword;
     private CheckBox cbRememberLogin, cbRememberPass;
     private Button btLogin, btRegister;
     SharedPreferences sp;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        sp = this.getSharedPreferences("Login", MODE_PRIVATE);
+        sp = getSharedPreferences("login", MODE_PRIVATE);
         boolean rememberLogin = sp.getBoolean("rememberLogin", false);
-        boolean rememberPass = sp.getBoolean("rememberPass", false);
-        if (rememberLogin)
-        {
+        if (rememberLogin) {
+            String email = sp.getString("email", "");
+            String password = sp.getString("password", "");
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginPage.this, task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(LoginPage.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(LoginPage.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+            });
             return;
         }
+
         setContentView(R.layout.activity_login_page);
         etEmail = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
@@ -35,8 +46,9 @@ public class LoginPage extends AppCompatActivity {
         cbRememberPass = findViewById(R.id.cbRememberPass);
         btLogin = findViewById(R.id.btLogin);
         btRegister = findViewById(R.id.btRegister);
-        if(rememberPass)
-        {
+
+        boolean rememberPass = sp.getBoolean("rememberPass", false);
+        if (rememberPass) {
             etPassword.setText(sp.getString("password", ""));
             etEmail.setText(sp.getString("email", ""));
         }
@@ -44,37 +56,34 @@ public class LoginPage extends AppCompatActivity {
         String enteredEmail = etEmail.getText().toString().trim();
         String enteredPassword = etPassword.getText().toString().trim();
 
-        String storedPassword = sp.getString("password_" + enteredEmail, null);
-        String storedEmail = sp.getString("email_" + enteredEmail, null);
-
         btLogin.setOnClickListener(v -> {
-            if (storedEmail != null && storedPassword != null && storedPassword.equals(enteredPassword)) {
-                SharedPreferences.Editor editor = sp.edit();
-                if (cbRememberLogin.isChecked()) {
-                    editor.putBoolean("rememberLogin", true);
-                    editor.putString("email", enteredEmail);
-                    editor.putString("password", enteredPassword);
+            mAuth.signInWithEmailAndPassword(enteredEmail, enteredPassword).addOnCompleteListener(LoginPage.this, task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(LoginPage.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
+                    SharedPreferences.Editor editor = sp.edit();
+                    if (cbRememberLogin.isChecked() || cbRememberPass.isChecked()) {
+                        editor.putBoolean("rememberLogin", cbRememberLogin.isChecked());
+                        editor.putBoolean("rememberPass", cbRememberPass.isChecked());
+                        editor.putString("email", enteredEmail);
+                        editor.putString("password", enteredPassword);
+                        editor.apply();
+                    } else {
+                        editor.putBoolean("rememberLogin", false);
+                        editor.putBoolean("rememberPass", false);
+                        editor.apply();
+                    }
+                    Intent i = new Intent(LoginPage.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
                 } else {
-                    editor.putBoolean("rememberLogin", false);
+                    Toast.makeText(LoginPage.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                 }
-                if (cbRememberPass.isChecked()) {
-                    editor.putBoolean("rememberPass", true);
-                    editor.putString("password", enteredPassword);
-                    editor.putString("email", enteredEmail);
-                } else {
-                    editor.putBoolean("rememberPass", false);
-                }
-                editor.apply();
-
-                startActivity(new Intent(LoginPage.this, MainActivity.class));
-                finish();
-            } else {
-                Toast.makeText(LoginPage.this, "Invalid email or password", Toast.LENGTH_SHORT).show();
-            }
+            });
         });
+
         btRegister.setOnClickListener(v -> {
-            Intent i = new Intent(LoginPage.this, RegisterPage.class);
-            startActivity(i);
+            Intent j = new Intent(LoginPage.this, RegisterPage.class);
+            startActivity(j);
             finish();
         });
     }

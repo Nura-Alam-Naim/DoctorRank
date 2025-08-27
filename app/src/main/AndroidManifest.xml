@@ -46,7 +46,7 @@
             android:name=".PatientProfileEditPage"
             android:exported="true" />
         <activity
-            android:name=".PatientProfilePage"
+            android:name=".UserProfilePage"
             android:exported="true" />
         <activity
             android:name=".RegisterPage"

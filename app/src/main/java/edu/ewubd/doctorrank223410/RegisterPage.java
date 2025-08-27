@@ -1,23 +1,48 @@
 package edu.ewubd.doctorrank223410;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 
 public class RegisterPage extends AppCompatActivity {
 
     private EditText etName, etEmail, etPhone, etPassword, etRePassword, etdob, etHeight, etWeight;
+    private ImageView Userimg;
     private RadioButton cbMale, cbFemale;
     private Button btCreateAccount, btLogin;
-
-
+    private String base64String;
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase FDB;
+    DatabaseReference ref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,21 +60,61 @@ public class RegisterPage extends AppCompatActivity {
         cbMale = findViewById(R.id.cbMale);
         cbFemale = findViewById(R.id.cbFemale);
 
+        Userimg = findViewById(R.id.Userimg);
+
         btCreateAccount = findViewById(R.id.btCreateAccount);
         btLogin = findViewById(R.id.btLogin);
 
+        Userimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openImageChooser();
+
+            }
+        });
         btCreateAccount.setOnClickListener(v -> {
             validateFields();
         });
 
         btLogin.setOnClickListener(v -> {
-            // Navigate to Login page
             Intent i = new Intent(RegisterPage.this, LoginPage.class);
             startActivity(i);
             finish();
         });
     }
+    private void openImageChooser() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/*");
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
+            Uri imageUri = data.getData();
+            Userimg.setImageURI(imageUri);
+            base64String = convertImageToBase64(imageUri);
+        }
+    }
 
+    private String convertImageToBase64(Uri imageUri) {
+        try {
+            ContentResolver contentResolver = getContentResolver();
+            InputStream inputStream = contentResolver.openInputStream(imageUri);
+
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+            assert inputStream != null;
+            inputStream.close();
+
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream.toByteArray();
+
+            return Base64.encodeToString(byteArray, Base64.DEFAULT);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     private void validateFields() {
         String name = etName.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
@@ -59,6 +124,9 @@ public class RegisterPage extends AppCompatActivity {
         String dob=etdob.getText().toString().trim();
         String height=etHeight.getText().toString().trim();
         String weight=etWeight.getText().toString().trim();
+        String image=base64String;
+
+
 
         if (name.length() < 4) {
             Toast.makeText(this, "Invalid Name", Toast.LENGTH_SHORT).show();
@@ -84,7 +152,33 @@ public class RegisterPage extends AppCompatActivity {
             Toast.makeText(this, "Please select gender", Toast.LENGTH_SHORT).show();
             return;
         }
-        Toast.makeText(RegisterPage.this, "Account created successfully", Toast.LENGTH_SHORT).show();
+
+        String gender= cbMale.isChecked() ? "Male" : "Female";
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(RegisterPage.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(RegisterPage.this, "Account created successfully", Toast.LENGTH_SHORT).show();
+                    FirebaseUser firebaseUser = task.getResult().getUser();
+                    FDB=FirebaseDatabase.getInstance();
+                    ref=FDB.getReference("Users");
+                        assert firebaseUser != null;
+                        String userId = firebaseUser.getUid();
+                    T_Users user=new T_Users(name,email,phone,pass,gender,dob,height,weight,image,userId);
+                    ref.child(userId).setValue(user);
+                    Intent i=new Intent(RegisterPage.this,LoginPage.class);
+                    startActivity(i);
+                    finish();
+                }
+                else {
+                    Toast.makeText(RegisterPage.this, "Email already associated with an account", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
         finish();
     }
 
