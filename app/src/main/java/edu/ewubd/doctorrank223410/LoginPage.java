@@ -27,7 +27,6 @@ public class LoginPage extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        // ✅ If already logged in, go straight to main
         if (currentUser != null) {
             startActivity(new Intent(this, MainActivity.class));
             finish();
@@ -52,7 +51,6 @@ public class LoginPage extends AppCompatActivity {
             }
         }
 
-        // Show login UI
         setContentView(R.layout.activity_login_page);
 
         etEmail = findViewById(R.id.etUsername);
@@ -66,9 +64,9 @@ public class LoginPage extends AppCompatActivity {
         if (rememberPass) {
             etEmail.setText(sp.getString("email", ""));
             etPassword.setText(sp.getString("password", ""));
+            cbRememberPass.setChecked(true);
         }
 
-        // ✅ Fix: fetch input only when login button is clicked
         btLogin.setOnClickListener(v -> {
             String enteredEmail = etEmail.getText().toString().trim();
             String enteredPassword = etPassword.getText().toString().trim();
@@ -96,12 +94,10 @@ public class LoginPage extends AppCompatActivity {
                         editor.remove("password");
                         editor.apply();
                     }
-
                     startActivity(new Intent(LoginPage.this, MainActivity.class));
                     finish();
                 } else {
-                    Toast.makeText(LoginPage.this, "Invalid Credentials: " +
-                            (task.getException() != null ? task.getException().getMessage() : ""), Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginPage.this, "Invalid Credential ", Toast.LENGTH_LONG).show();
                 }
             });
         });

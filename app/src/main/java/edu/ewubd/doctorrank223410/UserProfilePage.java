@@ -44,8 +44,6 @@ public class UserProfilePage extends AppCompatActivity {
         tvEmail = findViewById(R.id.tvEmail);
         tvGender = findViewById(R.id.tvGender);
 
-        cbMale = findViewById(R.id.cbMale);
-        cbFemale = findViewById(R.id.cbFemale);
 
         btLogout = findViewById(R.id.btLogout);
         btEditProfile = findViewById(R.id.btEditProfile);
@@ -55,7 +53,6 @@ public class UserProfilePage extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             String uid = currentUser.getUid();
-            // ✅ make sure this matches your RegisterPage write path
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child(uid);
 
             ref.get().addOnCompleteListener(task -> {
