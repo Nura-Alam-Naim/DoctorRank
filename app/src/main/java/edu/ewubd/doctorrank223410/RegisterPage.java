@@ -138,7 +138,7 @@ public class RegisterPage extends AppCompatActivity {
             return;
         }
 
-        if (pass.length() < 4) {
+        if (pass.length() < 6) {
             Toast.makeText(this, "Invalid Password", Toast.LENGTH_SHORT).show();
             return;
         }
