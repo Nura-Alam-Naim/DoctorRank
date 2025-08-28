@@ -14,7 +14,12 @@ import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
+
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 
 
@@ -72,10 +77,17 @@ public class DoctorListAdapter extends ArrayAdapter<T_DoctorInfo> {
         });
 
         bookNowBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), DateSelection.class);
-            intent.putExtra("doctorId", doctor.id);
-            intent.putExtra("doctorName", doctor.name);
-            context.startActivity(intent);
+            String userId = FirebaseAuth.getInstance().getUid();
+            if(userId == null) {
+                Toast.makeText(getContext(),"Please Login First",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getContext(), LoginPage.class);
+                context.startActivity(i);
+            } else {
+                Intent intent = new Intent(getContext(), DateSelection.class);
+                intent.putExtra("doctorId", doctor.id);
+                intent.putExtra("doctorName", doctor.name);
+                context.startActivity(intent);
+            }
         });
 
         return rowView;

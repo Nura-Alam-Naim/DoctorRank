@@ -23,7 +23,13 @@
         android:id="@+id/calendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:weekDayTextAppearance="@style/CalendarWeekDayStyle"
+        android:dateTextAppearance="@style/CalendarDateStyle"
+        android:focusedMonthDateColor="@android:color/black"
+        android:unfocusedMonthDateColor="@android:color/darker_gray"
+        android:weekNumberColor="@android:color/darker_gray"
+        android:weekSeparatorLineColor="@android:color/darker_gray"/>
     <ListView
         android:id="@+id/lvTimeSchedule"
         android:layout_width="wrap_content"
