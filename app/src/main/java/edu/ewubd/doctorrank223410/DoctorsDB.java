@@ -73,17 +73,49 @@ public class DoctorsDB extends SQLiteOpenHelper {
             db.endTransaction();
         }
     }
-    public List<T_DoctorInfo> GetAll() {
+    // Corrected line:
+    // In DoctorsDB.java
+    public ArrayList<T_DoctorInfo> GetAll() {
+        System.out.println("DoctorsDB.GetAll() - Method CALLED.");
         SQLiteDatabase db = getReadableDatabase();
-        Cursor c = db.query(T, null, null, null, null, null, C_NAME + " ASC");
-        List<T_DoctorInfo> out = new ArrayList<>();
+        Cursor c = null; // Initialize to null
+        ArrayList<T_DoctorInfo> out = new ArrayList<>();
         try {
-            while (c.moveToNext()) out.add(fromCursor(c));
+            System.out.println("DoctorsDB.GetAll() - Attempting to query table: " + T);
+            c = db.query(T, null, null, null, null, null, C_RATING + " ASC");
+
+            if (c == null) {
+                System.err.println("DoctorsDB.GetAll() - Cursor is NULL after query!");
+                return out; // Return empty list
+            }
+
+            System.out.println("DoctorsDB.GetAll() - Query successful. Cursor row count: " + c.getCount());
+
+            if (c.moveToFirst()) { // Use if instead of while for the first check
+                System.out.println("DoctorsDB.GetAll() - moveToFirst() was successful. Processing rows...");
+                do {
+                    System.out.println("DoctorsDB.GetAll() - Processing a row...");
+                    out.add(fromCursor(c));
+                } while (c.moveToNext());
+                System.out.println("DoctorsDB.GetAll() - Finished processing all rows in cursor.");
+            } else {
+                System.out.println("DoctorsDB.GetAll() - moveToFirst() returned false. Table is likely empty or query returned no results.");
+            }
+        } catch (Exception e) {
+            System.err.println("DoctorsDB.GetAll() - EXCEPTION during GetAll: " + e.getMessage());
+            e.printStackTrace(); // Print stack trace for any exception
         } finally {
-            c.close();
+            if (c != null && !c.isClosed()) {
+                c.close();
+                System.out.println("DoctorsDB.GetAll() - Cursor closed.");
+            }
+            // Not closing 'db' here as it's managed by the singleton SQLiteOpenHelper
         }
+        System.out.println("DoctorsDB.GetAll() - Returning list with size: " + out.size());
         return out;
     }
+
+
 
     public T_DoctorInfo getById(String id) {
         SQLiteDatabase db = getReadableDatabase();

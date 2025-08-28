@@ -131,8 +131,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        DocList=new DoctorListAdapter(this,DoctorInfo);
-        lvDoctorList.setAdapter(DocList);
     }
     void setDateAndDay()
     {

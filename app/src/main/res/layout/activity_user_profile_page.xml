@@ -70,7 +70,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp">
                 <TextView
-                    android:id="@+id/tvEmail"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -79,7 +78,7 @@
                     android:textStyle="bold"
                     android:textSize="18dp"/>
                 <TextView
-                    android:id="@+id/tvAge"
+                    android:id="@+id/tvEmail"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
@@ -96,7 +95,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp">
                 <TextView
-                    android:id="@+id/tvPhone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -105,7 +103,7 @@
                     android:textStyle="bold"
                     android:textSize="18dp"/>
                 <TextView
-                    android:id="@+id/tvAge"
+                    android:id="@+id/tvPhone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
@@ -157,7 +155,7 @@
                     android:textStyle="bold"
                     android:textSize="18dp"/>
                 <TextView
-                    android:id="@+id/tvAge"
+                    android:id="@+id/tvDOB"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
