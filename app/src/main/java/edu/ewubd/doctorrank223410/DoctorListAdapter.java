@@ -2,6 +2,9 @@ package edu.ewubd.doctorrank223410;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,33 +38,43 @@ public class DoctorListAdapter extends ArrayAdapter<T_DoctorInfo> {
 
          T_DoctorInfo doctor = values.get(position);
 
-        // Bind XML views
         TextView doctorName = rowView.findViewById(R.id.doctorName);
-        TextView doctorInfo = rowView.findViewById(R.id.doctorInfo);
+        TextView doctorSpeciality = rowView.findViewById(R.id.doctorSpeciality);
         TextView doctorRoom = rowView.findViewById(R.id.doctorRoom);
         RatingBar doctorRating = rowView.findViewById(R.id.doctorRating);
         ImageView doctorPhoto = rowView.findViewById(R.id.doctorPhoto);
+        TextView doctorCharge = rowView.findViewById(R.id.doctorCharge);
 
         Button profileBtn = rowView.findViewById(R.id.profile);
         Button bookNowBtn = rowView.findViewById(R.id.bookNow);
 
         // Set values
         doctorName.setText(doctor.name);
-        doctorInfo.setText(doctor.speciality);
+        doctorSpeciality.setText(doctor.speciality);
         doctorRoom.setText("Room No: " + doctor.roomNo);
         doctorRating.setRating(doctor.rating);
+        doctorCharge.setText("Charge: " + doctor.charge);
+        if (doctor.picture != null && !doctor.picture.isEmpty()) {
+            try {
+                byte[] bytes = Base64.decode(doctor.picture, Base64.DEFAULT);
+                Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                doctorPhoto.setImageBitmap(bmp);
+            } catch (Exception e) {
+                doctorPhoto.setImageResource(R.drawable.dummy);
+            }
+        }
 
         profileBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(context, DoctorProfilePage.class);
-            intent.putExtra("doctorId", doctor.name); // pass doctor info
+            Intent intent = new Intent(getContext(), DoctorProfilePage.class);
+            intent.putExtra("doctorId", doctor.id); // pass doctor info
             context.startActivity(intent);
         });
 
         // Book Now button action
         bookNowBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(context, DateSelection.class);
-            intent.putExtra("doctorId", doctor.name);
-            intent.putExtra("doctorName", doctor.speciality);
+            Intent intent = new Intent(getContext(), DateSelection.class);
+            intent.putExtra("doctorId", doctor.id);
+            intent.putExtra("doctorName", doctor.name);
             context.startActivity(intent);
         });
         return rowView;

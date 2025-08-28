@@ -29,6 +29,7 @@ public class DoctorSeedService extends JobIntentService {
     @Override
     protected void onHandleWork(@NonNull Intent intent) {
         try {
+            System.out.println("Service Called");
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("doctors");
             DataSnapshot snap = Tasks.await(ref.get());
 
@@ -47,6 +48,7 @@ public class DoctorSeedService extends JobIntentService {
                     }
                     doctors.add(d);
                 }
+                System.out.println(doctors.size());
                 DoctorsDB.get(getApplicationContext()).saveAll(doctors);
                 getSharedPreferences("my_pr", MODE_PRIVATE).edit().putBoolean("seeded", true).apply();
             }
