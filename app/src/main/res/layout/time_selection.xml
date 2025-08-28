@@ -1,147 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <RadioGroup
-        android:id="@+id/timeSlotRadioGroup"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <Button
+        android:id="@+id/btnSlot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-">
-
-        <!-- Available Slots -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/timeSlot1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TO-From"
-                android:textSize="20dp"
-                android:background="#06a9b1"
-                android:padding="16dp"
-                android:textColor="#ffffff"
-                android:buttonTint="#ffffff"
-                android:layout_marginBottom="12dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
-            <RadioButton
-                android:id="@+id/timeSlot2"
-                android:buttonTint="#ffffff"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TO-From"
-                android:textSize="20dp"
-                android:background="#06a9b1"
-                android:textColor="#ffffff"
-                android:padding="16dp"
-                android:layout_marginBottom="12dp"
-                android:layout_marginRight="10dp"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/timeSlot3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TO-From"
-                android:textSize="20dp"
-                android:background="#06a9b1"
-                android:padding="16dp"
-                android:textColor="#ffffff"
-                android:buttonTint="#ffffff"
-                android:layout_marginBottom="12dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
-            <RadioButton
-                android:id="@+id/timeSlot4"
-                android:buttonTint="#ffffff"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TO-From"
-                android:textSize="20dp"
-                android:background="#06a9b1"
-                android:textColor="#ffffff"
-                android:padding="16dp"
-                android:layout_marginBottom="12dp"
-                android:layout_marginRight="10dp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/timeSlot5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TO-From"
-                android:textSize="20dp"
-                android:background="#06a9b1"
-                android:padding="16dp"
-                android:textColor="#ffffff"
-                android:buttonTint="#ffffff"
-                android:layout_marginBottom="12dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
-            <RadioButton
-                android:id="@+id/timeSlot6"
-                android:buttonTint="#ffffff"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TO-From"
-                android:textSize="20dp"
-                android:background="#06a9b1"
-                android:textColor="#ffffff"
-                android:padding="16dp"
-                android:layout_marginBottom="12dp"
-                android:layout_marginRight="10dp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/timeSlot7"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TO-From"
-                android:textSize="20dp"
-                android:background="#06a9b1"
-                android:padding="16dp"
-                android:textColor="#ffffff"
-                android:buttonTint="#ffffff"
-                android:layout_marginBottom="12dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
-            <RadioButton
-                android:id="@+id/timeSlot8"
-                android:buttonTint="#ffffff"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TO-From"
-                android:textSize="20dp"
-                android:background="#06a9b1"
-                android:textColor="#ffffff"
-                android:padding="16dp"
-                android:layout_marginBottom="12dp"
-                android:layout_marginRight="10dp"/>
-        </LinearLayout>
-
-    </RadioGroup>
-
+        android:textColor="@android:color/white"
+        android:text="09:00 AM - 09:30 AM"
+        android:enabled="true"/>
 </LinearLayout>

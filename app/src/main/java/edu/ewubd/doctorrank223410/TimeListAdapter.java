@@ -5,58 +5,65 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 
-
-public class TimeListAdapter extends ArrayAdapter<T_DoctorInfo> {
+public class TimeListAdapter extends ArrayAdapter<String> {
 
     private final Context context;
-    private final ArrayList<T_DoctorInfo> values;
+    private final ArrayList<String> slots;        // All slots for the day
+    private final ArrayList<String> bookedSlots;  // Already booked slots
+    private String selectedSlot = null;           // Track user selection
 
-    public TimeListAdapter(@NonNull Context context, @NonNull ArrayList<T_DoctorInfo> items) {
-        super(context, -1, items);
+    public TimeListAdapter(@NonNull Context context,
+                           @NonNull ArrayList<String> slots,
+                           @NonNull ArrayList<String> bookedSlots) {
+        super(context, 0, slots);
         this.context = context;
-        this.values = items;
+        this.slots = slots;
+        this.bookedSlots = bookedSlots;
     }
 
+    @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context)
+                    .inflate(R.layout.time_selection, parent, false);
+        }
 
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.doctor_adapter_row, parent, false);
+        Button btnSlot = convertView.findViewById(R.id.btnSlot);
+        String slot = slots.get(position);
 
-//        TextView tvSN = rowView.findViewById(R.id.tvSerial);
-//        TextView tvName = rowView.findViewById(R.id.tvName);
-//        EditText etRemark = rowView.findViewById(R.id.etRemark);
-//        RadioButton rbAbsent=rowView.findViewById(R.id.rbAbsent);
-//        RadioButton rbPresent=rowView.findViewById(R.id.rbPresent);
-//        //TextView eventType = rowView.findViewById(R.id.tvEventType);
+        btnSlot.setText(slot);
 
-//        StudentAttendence sa = values.get(position);
-//        tvSN.setText(""+(position+1));
-//        tvName.setText(sa.name);
-//        etRemark.setText(sa.remark);
-//        rbPresent.setChecked(sa.status);
-//        rbAbsent.setChecked(!sa.status);
+        // Disable button if booked
+        if (bookedSlots.contains(slot)) {
+            btnSlot.setEnabled(false);
+            btnSlot.setBackgroundColor(0xFFAAAAAA); // gray for booked
+        } else {
+            btnSlot.setEnabled(true);
+            btnSlot.setBackgroundColor(0xFF06A9B1); // teal for available
+        }
 
+        // Highlight selected slot
+        if (slot.equals(selectedSlot)) {
+            btnSlot.setBackgroundColor(0xFFF29E23); // orange highlight
+        }
 
-//        rbPresent.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                values.get(position).status=true;
-//            }
-//        });
-//
-//        rbAbsent.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                values.get(position).status=false;
-//            }
-//        });
+        // Handle click
+        btnSlot.setOnClickListener(v -> {
+            selectedSlot = slot;
+            notifyDataSetChanged(); // refresh UI so only one button looks selected
+        });
 
-        return rowView;
+        return convertView;
+    }
+
+    public String getSelectedSlot() {
+        return selectedSlot;
     }
 }
