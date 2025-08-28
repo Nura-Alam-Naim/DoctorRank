@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -56,7 +57,24 @@ public class DateSelection extends AppCompatActivity {
         // Listen to calendar changes
         calendar.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
             selectedDate = year + "-" + String.format("%02d", month + 1) + "-" + String.format("%02d", dayOfMonth);
-            loadSlotsForDate(selectedDate);
+
+            // --- Figure out the day name ---
+            try {
+                String dateStr = selectedDate;
+                Date parsed = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(dateStr);
+                String dayName = new SimpleDateFormat("EEEE", Locale.getDefault()).format(parsed);
+
+                // --- Check if doctor has slots on this day ---
+                if (doctor != null && doctor.schedule != null && doctor.schedule.containsKey(dayName)) {
+                    loadSlotsForDate(selectedDate);   // ✅ valid day, load slots
+                } else {
+                    slots.clear();
+                    if (adapter != null) adapter.notifyDataSetChanged();
+                    Toast.makeText(this, "Doctor is not available on " + dayName, Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
 
         btBack.setOnClickListener(v -> finish());
@@ -75,14 +93,18 @@ public class DateSelection extends AppCompatActivity {
                     .child(doctorId)
                     .child(selectedDate)
                     .child(chosenSlot);
-            ref.setValue(true);
+
+            String userId = FirebaseAuth.getInstance().getUid();
+
+            Booking booking = new Booking(userId, doctorId, doctorName, doctor.speciality,
+                    doctor.roomNo, selectedDate, chosenSlot);
+            ref.setValue(booking);
             Intent intent = new Intent(DateSelection.this, confirmation.class);
             intent.putExtra("appointmentDate", selectedDate);
             intent.putExtra("appointmentTime", chosenSlot);
             intent.putExtra("doctorName", doctor.name);
             intent.putExtra("specialization", doctor.speciality);
             intent.putExtra("roomNo", doctor.roomNo);
-
             finish();
         });
     }
