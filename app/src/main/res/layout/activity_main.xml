@@ -137,7 +137,7 @@ tools:context=".MainActivity">
         android:id="@+id/btMyAppoinments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Appoinments"
+        android:text="Past Appoinments"
         android:backgroundTint="#000000"/>
 </LinearLayout>
 
