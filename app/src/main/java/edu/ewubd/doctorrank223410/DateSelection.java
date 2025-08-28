@@ -46,6 +46,7 @@ public class DateSelection extends AppCompatActivity {
 
         // --- Init views ---
         calendar = findViewById(R.id.calendar);
+        calendar.setMinDate(System.currentTimeMillis() - 1000);
         lvTimeSchedule = findViewById(R.id.lvTimeSchedule);
         btBack = findViewById(R.id.btBack);
         btConfirm = findViewById(R.id.btConfirm);
@@ -104,6 +105,7 @@ public class DateSelection extends AppCompatActivity {
             intent.putExtra("doctorName", doctor.name);
             intent.putExtra("specialization", doctor.speciality);
             intent.putExtra("roomNo", String.valueOf(doctor.roomNo));
+            startActivity(intent);
             finish();
         });
     }
