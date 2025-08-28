@@ -13,7 +13,6 @@ public class T_DoctorInfo {
     public int charge;
     public String BDMC;
 
-    // ✅ New flexible schedule: Map<Day, List<slots>>
     public Map<String, List<String>> schedule;
 
     // REQUIRED by Firebase (empty constructor)

@@ -93,25 +93,29 @@ public class DateSelection extends AppCompatActivity {
             Booking booking = new Booking(userId, doctorId, doctorName,
                     doctor.speciality, doctor.roomNo, selectedDate, chosenSlot);
 
-            DatabaseReference ref = FirebaseDatabase.getInstance()
-                    .getReference("bookings")
-                    .child(doctorId)
-                    .child(selectedDate)
-                    .child(chosenSlot);
+            UserBooking userBooking = new UserBooking(
+                    selectedDate, chosenSlot, doctor.name, doctor.speciality);
 
-            ref.setValue(booking).addOnSuccessListener(aVoid -> {
-                Intent intent = new Intent(DateSelection.this, confirmation.class);
-                intent.putExtra("appointmentDate", selectedDate);
-                intent.putExtra("appointmentTime", chosenSlot);
-                intent.putExtra("doctorName", doctor.name);
-                intent.putExtra("specialization", doctor.speciality);
-                intent.putExtra("roomNo", String.valueOf(doctor.roomNo));
-                startActivity(intent);
-                finish();
-            });
+            DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+
+            db.child("bookings").child(doctorId).child(selectedDate).child(chosenSlot)
+                    .setValue(booking)
+                    .addOnSuccessListener(aVoid -> {
+                        String bookingKey = db.child("user_bookings").child(userId).push().getKey();
+                        if (bookingKey != null) {
+                            db.child("user_bookings").child(userId).child(bookingKey).setValue(userBooking);
+                        }
+                        Intent intent = new Intent(DateSelection.this, confirmation.class);
+                        intent.putExtra("appointmentDate", selectedDate);
+                        intent.putExtra("appointmentTime", chosenSlot);
+                        intent.putExtra("doctorName", doctor.name);
+                        intent.putExtra("specialization", doctor.speciality);
+                        intent.putExtra("roomNo", String.valueOf(doctor.roomNo));
+                        startActivity(intent);
+                        finish();
+                    });
         });
     }
-
     private void loadSlotsForDate(String date) {
         executor.execute(() -> {
             doctor = DoctorsDB.get(this).getById(doctorId);
