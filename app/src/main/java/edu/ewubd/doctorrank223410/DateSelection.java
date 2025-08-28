@@ -82,6 +82,7 @@ public class DateSelection extends AppCompatActivity {
             intent.putExtra("doctorName", doctor.name);
             intent.putExtra("specialization", doctor.speciality);
             intent.putExtra("roomNo", doctor.roomNo);
+            startActivity(intent);
 
             finish();
         });
