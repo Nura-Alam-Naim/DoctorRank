@@ -32,13 +32,13 @@ public class DoctorSeedService extends JobIntentService {
     @Override
     protected void onHandleWork(@NonNull Intent intent) {
         try {
-            Log.d("DoctorSeedService", "onHandleWork: started"); // STEP 3 (log 1)
+            Log.d("DoctorSeedService", "onHandleWork: started");
 
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("doctors");
             DataSnapshot snap = Tasks.await(ref.get());
 
             Log.d("DoctorSeedService", "Firebase get() done. exists=" + snap.exists() +
-                    " children=" + (snap.exists() ? snap.getChildrenCount() : 0)); // STEP 3 (log 2)
+                    " children=" + (snap.exists() ? snap.getChildrenCount() : 0));
 
             if (snap.exists()) {
                 List<T_DoctorInfo> doctors = new ArrayList<>();
