@@ -33,12 +33,12 @@ public class confirmation extends AppCompatActivity {
 
         Intent i = getIntent();
         if (i != null) {
-            doctorId = i.getStringExtra("doctorId");
+            doctorDate = i.getStringExtra("appointmentDate");
+            doctorTime = i.getStringExtra("appointmentTime");
             doctorName = i.getStringExtra("doctorName");
             doctorSpecialization = i.getStringExtra("specialization");
             doctorRoomNumber = i.getStringExtra("roomNo");
-            doctorDate = i.getStringExtra("appointmentDate");
-            doctorTime = i.getStringExtra("appointmentTime");
+
         }
         tvAppointmentDate.setText(doctorDate);
         tvAppointmentTime.setText(doctorTime);

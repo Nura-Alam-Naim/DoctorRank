@@ -95,16 +95,15 @@ public class DateSelection extends AppCompatActivity {
                     .child(chosenSlot);
 
             String userId = FirebaseAuth.getInstance().getUid();
-
             Booking booking = new Booking(userId, doctorId, doctorName, doctor.speciality,
-                    doctor.roomNo, selectedDate, chosenSlot);
+                                            doctor.roomNo, selectedDate, chosenSlot);
             ref.setValue(booking);
             Intent intent = new Intent(DateSelection.this, confirmation.class);
             intent.putExtra("appointmentDate", selectedDate);
             intent.putExtra("appointmentTime", chosenSlot);
             intent.putExtra("doctorName", doctor.name);
             intent.putExtra("specialization", doctor.speciality);
-            intent.putExtra("roomNo", doctor.roomNo);
+            intent.putExtra("roomNo", String.valueOf(doctor.roomNo));
             finish();
         });
     }
