@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,10 +100,17 @@ public class DoctorProfilePage extends AppCompatActivity {
 
         // Book Now button
         btBookNow.setOnClickListener(v -> {
-            Intent intent = new Intent(DoctorProfilePage.this, DateSelection.class);
-            intent.putExtra("doctorId", doctorId);
-            intent.putExtra("doctorName", tvDoctorName.getText().toString());
-            startActivity(intent);
+            String userId = FirebaseAuth.getInstance().getUid();
+            if(userId == null) {
+                Toast.makeText(this,"Please Login First",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(DoctorProfilePage.this, LoginPage.class);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(DoctorProfilePage.this, DateSelection.class);
+                intent.putExtra("doctorId", doctor.id);
+                intent.putExtra("doctorName", doctor.name);
+                startActivity(intent);
+            }
         });
     }
 }
