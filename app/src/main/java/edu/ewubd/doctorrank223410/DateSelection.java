@@ -29,6 +29,7 @@ public class DateSelection extends AppCompatActivity {
     private String selectedDate;
     private ArrayList<String> slots = new ArrayList<>();
     private TimeListAdapter adapter;
+    private T_DoctorInfo doctor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,21 +70,25 @@ public class DateSelection extends AppCompatActivity {
                 return;
             }
 
-            // Save booking in Firebase
             DatabaseReference ref = FirebaseDatabase.getInstance()
                     .getReference("bookings")
                     .child(doctorId)
                     .child(selectedDate)
                     .child(chosenSlot);
-
             ref.setValue(true);
-            Toast.makeText(this, "Booking confirmed!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(DateSelection.this, confirmation.class);
+            intent.putExtra("appointmentDate", selectedDate);
+            intent.putExtra("appointmentTime", chosenSlot);
+            intent.putExtra("doctorName", doctor.name);
+            intent.putExtra("specialization", doctor.speciality);
+            intent.putExtra("roomNo", doctor.roomNo);
+
             finish();
         });
     }
 
     private void loadSlotsForDate(String date) {
-        T_DoctorInfo doctor = DoctorsDB.get(this).getById(doctorId);
+        doctor = DoctorsDB.get(this).getById(doctorId);
         if (doctor == null) {
             Toast.makeText(this, "Doctor not found!", Toast.LENGTH_SHORT).show();
             return;
@@ -99,7 +104,6 @@ public class DateSelection extends AppCompatActivity {
             if (daySlots != null) slots.addAll(daySlots);
         }
 
-        // Now check Firebase for bookings
         DatabaseReference ref = FirebaseDatabase.getInstance()
                 .getReference("bookings")
                 .child(doctorId)

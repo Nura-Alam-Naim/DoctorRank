@@ -11,5 +11,6 @@
         android:layout_height="wrap_content"
         android:textColor="@android:color/white"
         android:text="09:00 AM - 09:30 AM"
-        android:enabled="true"/>
+        android:enabled="true"
+        android:layout_gravity="center"/>
 </LinearLayout>

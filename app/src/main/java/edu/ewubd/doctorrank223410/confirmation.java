@@ -1,5 +1,6 @@
 package edu.ewubd.doctorrank223410;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -14,28 +15,41 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class confirmation extends AppCompatActivity {
 
-    private ImageView ivLogo ;
-    private TextView tvSuccessMessage, tvAppointmentDate, tvAppointmentTime, tvDoctorName, tvSpecialization, tvPosition, tvExperience, tvAddress, tvRoomNumber ;
+    private TextView  tvAppointmentDate, tvAppointmentTime, tvDoctorName, tvSpecialization,  tvRoomNumber ;
     private Button btHome ;
+    private String doctorId, doctorName, doctorSpecialization, doctorRoomNumber, doctorDate, doctorTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation);
 
-        ivLogo = findViewById(R.id.ivLogo) ;
+        tvAppointmentDate = findViewById(R.id.tvAppointmentDate);
+        tvAppointmentTime = findViewById(R.id.tvAppointmentTime);
+        tvDoctorName = findViewById(R.id.tvDoctorName);
+        tvSpecialization = findViewById(R.id.tvSpecialization);
+        tvRoomNumber = findViewById(R.id.tvRoomNumber);
+        btHome = findViewById(R.id.btHome);
 
-        tvSuccessMessage = findViewById(R.id.tvSuccessMessage) ;
-        tvAppointmentDate = findViewById(R.id.tvAppointmentDate) ;
-        tvAppointmentTime = findViewById(R.id.tvAppointmentTime) ;
-        tvDoctorName = findViewById(R.id.tvDoctorName) ;
-        tvSpecialization = findViewById(R.id.tvSpecialization) ;
-        tvPosition = findViewById(R.id.tvPosition) ;
-        tvExperience = findViewById(R.id.tvExperience) ;
-        tvAddress = findViewById(R.id.tvAddress) ;
-        tvRoomNumber = findViewById(R.id.tvRoomNumber) ;
+        Intent i = getIntent();
+        if (i != null) {
+            doctorId = i.getStringExtra("doctorId");
+            doctorName = i.getStringExtra("doctorName");
+            doctorSpecialization = i.getStringExtra("doctorSpecialization");
+            doctorRoomNumber = i.getStringExtra("doctorRoomNumber");
+            doctorDate = i.getStringExtra("appointmentDate");
+            doctorTime = i.getStringExtra("appointmentTime");
+        }
+        tvAppointmentDate.setText(doctorDate);
+        tvAppointmentTime.setText(doctorTime);
+        tvDoctorName.setText(doctorName);
+        tvSpecialization.setText(doctorSpecialization);
+        tvRoomNumber.setText(doctorRoomNumber);
 
-        btHome = findViewById(R.id.btHome) ;
-
+        btHome.setOnClickListener(v -> {
+            Intent intent = new Intent(confirmation.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
     }
 }
