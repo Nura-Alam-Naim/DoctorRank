@@ -11,11 +11,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DoctorRank223410">
+        android:theme="@style/Theme.DoctorRank223410"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".DoctorSelectionPage"
-            android:exported="false" />
-        <!-- Defined ID and added to Manifest -->
+            android:exported="true"/>
         <activity
             android:name=".Welcome"
             android:exported="true">

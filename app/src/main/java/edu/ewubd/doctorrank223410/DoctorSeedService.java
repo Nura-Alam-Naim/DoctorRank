@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log; // <-- added
 
 import androidx.annotation.NonNull;
 import androidx.core.app.JobIntentService;
@@ -22,27 +23,39 @@ import java.util.List;
 
 public class DoctorSeedService extends JobIntentService {
     public static final int JOB_ID = 2001;
+
     public static void enqueue(Welcome ctx) {
         enqueueWork(ctx, DoctorSeedService.class, JOB_ID,
                 new Intent(ctx, DoctorSeedService.class));
     }
+
     @Override
     protected void onHandleWork(@NonNull Intent intent) {
         try {
+            Log.d("DoctorSeedService", "onHandleWork: started"); // STEP 3 (log 1)
+
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("doctors");
             DataSnapshot snap = Tasks.await(ref.get());
+
+            Log.d("DoctorSeedService", "Firebase get() done. exists=" + snap.exists() +
+                    " children=" + (snap.exists() ? snap.getChildrenCount() : 0)); // STEP 3 (log 2)
 
             if (snap.exists()) {
                 List<T_DoctorInfo> doctors = new ArrayList<>();
                 for (DataSnapshot child : snap.getChildren()) {
                     T_DoctorInfo d = child.getValue(T_DoctorInfo.class);
-                    if (d == null) continue;
+                    if (d == null) {
+                        Log.w("DoctorSeedService", "Null doctor at key=" + child.getKey());
+                        continue;
+                    }
                     if (d.id == null || d.id.isEmpty()) d.id = child.getKey();
                     if (d.picture != null && !d.picture.isEmpty()) {
                         Bitmap bmp = getBitmapFromURL(d.picture);
                         if (bmp != null) {
                             String base64 = bitmapToBase64(bmp);
                             d.picture = base64;
+                        } else {
+                            Log.w("DoctorSeedService", "Image fetch failed for: " + d.picture);
                         }
                     }
                     doctors.add(d);
@@ -50,10 +63,14 @@ public class DoctorSeedService extends JobIntentService {
                 DoctorsDB.get(getApplicationContext()).saveAll(doctors);
                 getSharedPreferences("my_pr", MODE_PRIVATE).edit().putBoolean("seeded", true).apply();
             }
+
+            Log.d("DoctorSeedService", "Seeding complete (or no data)."); // STEP 3 (log 3)
         } catch (Exception e) {
+            Log.e("DoctorSeedService", "onHandleWork exception", e); // STEP 3 (error log)
             e.printStackTrace();
         }
     }
+
     private Bitmap getBitmapFromURL(String src) {
         try {
             URL url = new URL(src);
@@ -63,10 +80,12 @@ public class DoctorSeedService extends JobIntentService {
             InputStream input = connection.getInputStream();
             return BitmapFactory.decodeStream(input);
         } catch (Exception e) {
+            Log.e("DoctorSeedService", "getBitmapFromURL failed for url=" + src, e);
             e.printStackTrace();
             return null;
         }
     }
+
     private String bitmapToBase64(Bitmap bmp) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
