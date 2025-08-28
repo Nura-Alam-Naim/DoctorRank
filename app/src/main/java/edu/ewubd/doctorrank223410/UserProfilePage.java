@@ -101,5 +101,12 @@ public class UserProfilePage extends AppCompatActivity {
                 finish();
             }
         });
+        btAppointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent I =new Intent(UserProfilePage.this, MyAppointments.class);
+                startActivity(I);
+            }
+        });
     }
 }
