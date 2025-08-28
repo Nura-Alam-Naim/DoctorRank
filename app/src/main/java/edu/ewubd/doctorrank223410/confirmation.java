@@ -35,8 +35,8 @@ public class confirmation extends AppCompatActivity {
         if (i != null) {
             doctorId = i.getStringExtra("doctorId");
             doctorName = i.getStringExtra("doctorName");
-            doctorSpecialization = i.getStringExtra("doctorSpecialization");
-            doctorRoomNumber = i.getStringExtra("doctorRoomNumber");
+            doctorSpecialization = i.getStringExtra("specialization");
+            doctorRoomNumber = i.getStringExtra("roomNo");
             doctorDate = i.getStringExtra("appointmentDate");
             doctorTime = i.getStringExtra("appointmentTime");
         }
