@@ -26,7 +26,7 @@ public class DoctorSeedService extends JobIntentService {
 
     public static void enqueue(Welcome ctx) {
         enqueueWork(ctx, DoctorSeedService.class, JOB_ID,
-                new Intent(ctx, DoctorSeedService.class));
+                new Intent(ctx, Welcome.class));
     }
 
     @Override
@@ -41,7 +41,7 @@ public class DoctorSeedService extends JobIntentService {
                     " children=" + (snap.exists() ? snap.getChildrenCount() : 0));
 
             if (snap.exists()) {
-                List<T_DoctorInfo> doctors = new ArrayList<>();
+                ArrayList<T_DoctorInfo> doctors = new ArrayList<>();
                 for (DataSnapshot child : snap.getChildren()) {
                     T_DoctorInfo d = child.getValue(T_DoctorInfo.class);
                     if (d == null) {
@@ -60,7 +60,9 @@ public class DoctorSeedService extends JobIntentService {
                     }
                     doctors.add(d);
                 }
+                DoctorsDB.get(getApplicationContext()).clearAll();
                 DoctorsDB.get(getApplicationContext()).saveAll(doctors);
+                System.out.println("Seeding Complete");
                 getSharedPreferences("my_pr", MODE_PRIVATE).edit().putBoolean("seeded", true).apply();
             }
 
@@ -90,6 +92,7 @@ public class DoctorSeedService extends JobIntentService {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] bytes = baos.toByteArray();
-        return Base64.encodeToString(bytes, Base64.NO_WRAP);
+        String base64 = Base64.encodeToString(bytes, Base64.NO_WRAP);
+        return base64;
     }
 }

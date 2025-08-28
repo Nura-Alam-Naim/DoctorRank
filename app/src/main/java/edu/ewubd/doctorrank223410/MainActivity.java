@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ivProfilePicture = findViewById(R.id.ivProfilePicture) ;
         tvDate = findViewById(R.id.tvDate) ;
         tvDay = findViewById(R.id.tvDay) ;

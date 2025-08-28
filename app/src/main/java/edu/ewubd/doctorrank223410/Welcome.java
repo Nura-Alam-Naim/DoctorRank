@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,8 +25,10 @@ public class Welcome extends AppCompatActivity {
         sp=getSharedPreferences("my_pr", MODE_PRIVATE);
         boolean isDone=sp.getBoolean("isDone", false);
         boolean seeded = sp.getBoolean("seeded", false);
-        if (!seeded) {
+        if(!seeded)
+        {
             DoctorSeedService.enqueue(this);
+            Toast.makeText(this, "Seeding doctors, please wait…", Toast.LENGTH_SHORT).show();
         }
         if(isDone)
         {
@@ -37,7 +40,6 @@ public class Welcome extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
         btGetStarted = findViewById(R.id.btGetStarted);
-        //ivLogo.setImageResource(R.drawable.logo);
         btGetStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

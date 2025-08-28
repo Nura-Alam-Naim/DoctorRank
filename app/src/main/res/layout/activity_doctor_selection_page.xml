@@ -8,7 +8,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".DoctorSelectionPage"
-    android:padding="15dp">
+    android:paddingTop="50dp"
+    android:paddingRight="15dp"
+    android:paddingLeft="15dp">
     <SearchView
         android:id="@+id/doctorSearchView"
         android:layout_width="match_parent"

@@ -19,6 +19,7 @@ public class DoctorSelectionPage extends AppCompatActivity {
     private ListView lvDoctorSelection;
     private SearchView searchView;
     private ArrayList<T_DoctorInfo> doctorInfoList=new ArrayList<T_DoctorInfo>();
+    DoctorListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +34,21 @@ public class DoctorSelectionPage extends AppCompatActivity {
         checkDatabase(this);
         doctorInfoList=db.GetAll();
         System.out.println(doctorInfoList.size());
-        DoctorListAdapter adapter=new DoctorListAdapter(this,doctorInfoList);
+        adapter=new DoctorListAdapter(this,doctorInfoList);
         lvDoctorSelection.setAdapter(adapter);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
 
     }
     public void checkDatabase(Context context) {
