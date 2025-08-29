@@ -94,8 +94,37 @@ public class DoctorsDB extends SQLiteOpenHelper {
             db.endTransaction();
         }
     }
+    public void save(T_DoctorInfo d) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        try {
+                if (d == null || d.id == null || d.id.isEmpty())
+                {
+                    return;
+                }
+                ContentValues cv = new ContentValues();
+                cv.put(C_ID, d.id);
+                cv.put(C_NAME, d.name);
+                cv.put(C_SPEC, d.speciality);
+                cv.put(C_RATING, d.rating);
+                cv.put(C_ROOM, d.roomNo);
+                cv.put(C_PIC, d.picture);
+                cv.put(C_CHARGE, d.charge);
+                cv.put(C_BDMC, d.BDMC);
 
-    // ---- Get all doctors
+                if (d.schedule != null) {
+                    String json = gson.toJson(d.schedule);
+                    cv.put(C_SCHEDULE, json);
+                } else {
+                    cv.put(C_SCHEDULE, "{}");
+                }
+                db.insertWithOnConflict(T, null, cv, SQLiteDatabase.CONFLICT_REPLACE);
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
+    }
+
     public ArrayList<T_DoctorInfo> GetAll() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.query(T, null, null, null, null, null, C_RATING + " DESC");

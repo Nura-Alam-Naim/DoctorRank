@@ -42,6 +42,7 @@ public class DoctorSeedService extends JobIntentService {
 
             if (snap.exists()) {
                 ArrayList<T_DoctorInfo> doctors = new ArrayList<>();
+                DoctorsDB.get(getApplicationContext()).clearAll();
                 for (DataSnapshot child : snap.getChildren()) {
                     T_DoctorInfo d = child.getValue(T_DoctorInfo.class);
                     if (d == null) {
@@ -58,21 +59,17 @@ public class DoctorSeedService extends JobIntentService {
                             Log.w("DoctorSeedService", "Image fetch failed for: " + d.picture);
                         }
                     }
-                    doctors.add(d);
+                    DoctorsDB.get(getApplicationContext()).save(d);
                 }
-                DoctorsDB.get(getApplicationContext()).clearAll();
-                DoctorsDB.get(getApplicationContext()).saveAll(doctors);
                 System.out.println("Seeding Complete");
                 getSharedPreferences("my_pr", MODE_PRIVATE).edit().putBoolean("seeded", true).apply();
             }
 
-            Log.d("DoctorSeedService", "Seeding complete ");
         } catch (Exception e) {
-            Log.e("DoctorSeedService", "onHandleWork exception", e); // STEP 3 (error log)
+            Log.e("DoctorSeedService", "onHandleWork exception", e);
             e.printStackTrace();
         }
     }
-
     private Bitmap getBitmapFromURL(String src) {
         try {
             URL url = new URL(src);
