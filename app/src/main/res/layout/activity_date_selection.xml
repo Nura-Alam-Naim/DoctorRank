@@ -19,7 +19,10 @@
         android:gravity="center"
         android:textStyle="bold"
         android:textSize="25sp"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp"
+        android:textColor="#FFFFFF"
+        android:background="#06a9b1"
+        />
     <CalendarView
         android:id="@+id/calendar"
         android:layout_width="match_parent"
@@ -45,12 +48,16 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:backgroundTint="#f29e23"
             android:text="Back"/>
         <Button
             android:id="@+id/btConfirm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="#000000"
+            android:backgroundTint="#f29e23"
             android:text="Confirm"/>
     </LinearLayout>
 

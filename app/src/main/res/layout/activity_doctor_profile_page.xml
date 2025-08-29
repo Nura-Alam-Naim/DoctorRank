@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#06a9b1"
+    android:background="#FFFFFF"
     android:padding="20dp"
     tools:context=".DoctorProfilePage">
 
@@ -19,9 +19,9 @@
         android:gravity="center"
         android:text="Doctor's Profile"
         android:textSize="38dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textStyle="bold"
-        android:background="#3DBABA"
+        android:background="#06a9b1"
         android:layout_marginBottom="3dp"
         android:layout_marginTop="40dp"/>
 
@@ -84,7 +84,9 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Rating"
-            android:textColor="@color/black"
+            android:textColor="#000000"
+            android:background="#f29e23"
+            android:layout_marginRight="3dp"
             android:textSize="25dp"/>
         <TextView
             android:id="@+id/tvDoctorBMDCno"
@@ -93,7 +95,9 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="BMDC-No"
-            android:textColor="@color/black"
+            android:textColor="#000000"
+            android:background="#f29e23"
+            android:layout_marginLeft="3dp"
             android:textSize="25dp" />
 
     </LinearLayout>
@@ -126,7 +130,8 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="Charge"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
+            android:background="#06a9b1"
             android:textSize="25dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
@@ -143,14 +148,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Back"
-            android:backgroundTint="#000000"
+            android:textColor="#000000"
+            android:backgroundTint="#f29e23"
             android:layout_weight="1"/>
         <Button
             android:id="@+id/btBookNow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Book Now"
-            android:backgroundTint="#000000"
+            android:textColor="#000000"
+            android:backgroundTint="#f29e23"
             android:layout_weight="1"/>
 
     </LinearLayout>

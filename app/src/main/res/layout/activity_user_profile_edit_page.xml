@@ -10,7 +10,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
 android:padding="20dp"
-android:background="#06a9b1"
+android:background="#FFFFFF"
 tools:context=".PatientProfileEditPage">
 
 
@@ -20,11 +20,11 @@ tools:context=".PatientProfileEditPage">
     android:gravity="center"
     android:text="Edit Your Profile"
     android:textSize="38dp"
-    android:textColor="@color/black"
+    android:textColor="@color/white"
     android:textStyle="bold"
-    android:background="#3DBABA"
+    android:background="#06a9b1"
     android:layout_marginBottom="3dp"
-    android:layout_marginTop="3dp"/>
+    android:layout_marginTop="40dp"/>
 
 <ImageView
     android:id="@+id/ivProfilePicture"
@@ -35,131 +35,178 @@ tools:context=".PatientProfileEditPage">
     android:src="@drawable/dummy"
     android:layout_marginBottom="10dp"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="10dp">
+
+            <!--first row-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Name : "
+                    android:textStyle="bold"
+                    android:textSize="18dp"/>
+                <TextView
+                    android:id="@+id/etName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="center"
+                    android:textSize="18dp"/>
+            </TableRow>
+
+            <!--second row-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="Gender : "
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="18dp"/>
+                <CheckBox
+                    android:id="@+id/cbMale"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Male"
+                    android:textStyle="bold"/>
+                <CheckBox
+                    android:id="@+id/cbFemale"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Female"
+                    android:textStyle="bold"/>
+
+
+            </TableRow>
+            <!--third row-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Date of Birth: "
+                    android:textStyle="bold"
+                    android:textSize="18dp"/>
+                <TextView
+                    android:id="@+id/etAge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="center"
+                    android:textSize="18dp"/>
+            </TableRow>
+
+            <!--fifth row-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Height: "
+                    android:textStyle="bold"
+                    android:textSize="18dp"/>
+                <TextView
+                    android:id="@+id/tvHeight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="center"
+                    android:textSize="18dp"/>
+            </TableRow>
+
+            <!--sixth row-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Weight "
+                    android:textStyle="bold"
+                    android:textSize="18dp"/>
+                <TextView
+                    android:id="@+id/tvWeight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="center"
+                    android:textSize="18dp"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Phone: "
+                    android:textStyle="bold"
+                    android:textSize="18dp"/>
+                <TextView
+                    android:id="@+id/tvPhone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="center"
+                    android:textSize="18dp"/>
+            </TableRow>
+        </TableLayout>
+
+
+
 
 <!-- Patient Info Section -->
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
-    android:orientation="vertical">
-
-    <EditText
-        android:id="@+id/etName"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:hint="Name"
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_marginBottom="3dp" />
-
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="10dp">
-
-        <!--first row-->
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:text="Gender : "
-                android:textStyle="bold"
-                android:textSize="18dp"/>
-            <CheckBox
-                android:id="@+id/cbMale"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Male"
-                android:textStyle="bold"/>
-            <CheckBox
-                android:id="@+id/cbFemale"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Female"
-                android:textStyle="bold"/>
-
-        </TableRow>
-
-        <!--second row-->
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Age"
-                android:textStyle="bold"
-                android:textSize="18dp"/>
-            <EditText
-                android:id="@+id/etAge"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Height"
-                android:textStyle="bold"
-                android:textSize="18dp"/>
-            <EditText
-                android:id="@+id/etHeight"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Weight"
-                android:textStyle="bold"
-                android:textSize="18dp"/>
-            <EditText
-                android:id="@+id/etWeight"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-
-
-        </TableRow>
-    </TableLayout>
-
-
-    <EditText
-        android:id="@+id/etPhone"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:hint="Phone"
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_marginBottom="10dp" />
-
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:hint="Password"
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_marginBottom="10dp" />
-
-
-
 
 
     </LinearLayout>
@@ -174,21 +221,24 @@ tools:context=".PatientProfileEditPage">
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Back"
-            android:backgroundTint="#000000"
+            android:backgroundTint="#f29e23"
+            android:textColor="@color/black"
             android:layout_weight="1"/>
         <Button
             android:id="@+id/btHome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Update password"
-            android:backgroundTint="#000000"
+            android:text="Update Password"
+            android:textColor="@color/black"
+            android:backgroundTint="#f29e23"
             android:layout_weight="1"/>
         <Button
             android:id="@+id/btSave"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Save"
-            android:backgroundTint="#000000"
+            android:backgroundTint="#f29e23"
+            android:textColor="@color/black"
             android:layout_weight="1"/>
 
     </LinearLayout>

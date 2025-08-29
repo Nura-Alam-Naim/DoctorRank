@@ -3,6 +3,8 @@ package edu.ewubd.doctorrank223410;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ public class MyAppointments extends AppCompatActivity {
 
     private ListView lvAppointments;
     private AppointmentListAdapter adapter;
+    private Button btBack;
     private ArrayList<UserBooking> appointmentList = new ArrayList<>();
 
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -38,7 +41,16 @@ public class MyAppointments extends AppCompatActivity {
 
         lvAppointments = findViewById(R.id.lvAppointments);
         adapter = new AppointmentListAdapter(this, appointmentList);
+
         lvAppointments.setAdapter(adapter);
+
+        btBack = findViewById(R.id.btBack);
+        btBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         loadAppointments(userId);
     }

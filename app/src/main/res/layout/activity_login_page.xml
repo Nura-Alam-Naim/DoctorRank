@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#06a9b1"
+    android:background="#FFFFFF"
     android:padding="30dp"
     tools:context=".LoginPage">
 
@@ -37,9 +37,9 @@
             android:gravity="center"
             android:text="Login"
             android:textSize="38dp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
-            android:background="#3DBABA"
+            android:background="#06a9b1"
             android:layout_marginBottom="3dp"/>
 
         <TextView
@@ -49,7 +49,8 @@
             android:gravity="center"
             android:text="Signin to your account"
             android:textSize="25dp"
-            android:textColor="@color/black"
+            android:textColor="#000000"
+            android:background="#f29e23"
             android:textStyle="bold"
             android:layout_marginBottom="3dp"/>
     </LinearLayout>
@@ -133,7 +134,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
-            android:backgroundTint="#000000"
+            android:textColor="#000000"
+            android:backgroundTint="#f29e23"
             android:layout_marginBottom="3dp"/>
     </LinearLayout>
 
@@ -164,7 +166,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Register"
-            android:backgroundTint="#000000"/>
+            android:textColor="#000000"
+            android:backgroundTint="#f29e23"/>
     </LinearLayout>
 
 </LinearLayout>

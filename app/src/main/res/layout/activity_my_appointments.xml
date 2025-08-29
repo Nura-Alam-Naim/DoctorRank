@@ -13,7 +13,9 @@
         android:textStyle="bold"
         android:gravity="center"
         android:padding="8dp"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp"
+        android:textColor="#FFFFFF"
+        android:background="#06a9b1" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -64,5 +66,7 @@
         android:id="@+id/btBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:backgroundTint="#f29e23"
         android:text="Back"/>
 </LinearLayout>

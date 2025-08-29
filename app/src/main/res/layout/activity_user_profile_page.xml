@@ -10,7 +10,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="#06a9b1"
+    android:background="#FFFFFF"
     tools:context=".UserProfilePage">
 
 
@@ -20,9 +20,9 @@
         android:gravity="center"
         android:text="My Profile"
         android:textSize="38dp"
-        android:textColor="@color/black"
+        android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:background="#3DBABA"
+        android:background="#06a9b1"
         android:layout_marginBottom="3dp"
         android:layout_marginTop="30dp"/>
 
@@ -52,6 +52,7 @@
             android:gravity="center"
             android:text="Name"
             android:textSize="24dp"
+            android:background="#f29e23"
             android:textColor="@color/black"
             android:layout_marginBottom="3dp"
             android:textStyle="bold"/>
@@ -223,21 +224,24 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Appointment"
-                android:backgroundTint="#000000"
+                android:backgroundTint="#f29e23"
+                android:textColor="@color/black"
                 android:layout_weight="1"/>
             <Button
                 android:id="@+id/btEditProfile"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Edit Profile"
-                android:backgroundTint="#000000"
+                android:textColor="#000000"
+                android:backgroundTint="#f29e23"
                 android:layout_weight="1"/>
             <Button
                 android:id="@+id/btLogout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Logout"
-                android:backgroundTint="#000000"
+                android:textColor="@color/black"
+                android:backgroundTint="#f29e23"
                 android:layout_weight="0.8"/>
         </LinearLayout>
 

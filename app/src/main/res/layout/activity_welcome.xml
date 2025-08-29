@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:text="Get Started"
         android:textSize="18sp"
-        android:textColor="#ffffff"
-        android:backgroundTint="#06a9b1"/>
+        android:textColor="@color/black"
+        android:backgroundTint="#f29e23"/>
 
 </LinearLayout>

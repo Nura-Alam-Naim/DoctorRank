@@ -8,7 +8,7 @@ android:id="@+id/main"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-android:background="#06a9b1"
+android:background="#FFFFFF"
 android:padding="30dp"
 tools:context=".MainActivity">
 
@@ -19,9 +19,9 @@ tools:context=".MainActivity">
     android:gravity="center"
     android:text="Hello User"
     android:textSize="38dp"
-    android:textColor="@color/black"
+    android:textColor="#FFFFFF"
     android:textStyle="normal"
-    android:background="#3DBABA"
+    android:background="#06a9b1"
     android:layout_marginBottom="3dp"
     android:layout_marginTop="30dp"/>
 
@@ -56,7 +56,8 @@ tools:context=".MainActivity">
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="Profile"
-            android:backgroundTint="#000000"
+            android:textColor="#000000"
+            android:backgroundTint="#f29e23"
             android:layout_marginBottom="3dp"/>
 
     </LinearLayout>
@@ -102,7 +103,8 @@ tools:context=".MainActivity">
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:text="Upcoming Appointments"
-        android:backgroundTint="#000000"
+        android:textColor="#000000"
+        android:backgroundTint="#f29e23"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"/>
 
@@ -112,7 +114,8 @@ tools:context=".MainActivity">
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:text="Book Prefered Doctor"
-        android:backgroundTint="#000000"
+        android:textColor="#000000"
+        android:backgroundTint="#f29e23"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"/>
 
@@ -128,10 +131,11 @@ tools:context=".MainActivity">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Appointment Today"
+        android:textColor="#FFFFFF"
         android:gravity="center"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:background="@color/white"/>
+        android:background="#06a9b1"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="30dp"
