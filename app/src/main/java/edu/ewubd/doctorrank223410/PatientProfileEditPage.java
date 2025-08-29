@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +31,7 @@ public class PatientProfileEditPage extends AppCompatActivity {
 
     private ImageView ivProfilePicture;
     private EditText etName, etAge, etHeight, etWeight, etPhone;
-    private CheckBox cbMale, cbFemale;
+    private RadioButton cbMale, cbFemale;
     private Button btBack, btHome, btSave;
     private static final int PICK_IMAGE_REQUEST = 1;
     private String base64String;

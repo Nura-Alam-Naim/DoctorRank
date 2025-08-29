@@ -65,7 +65,7 @@ tools:context=".PatientProfileEditPage">
                     android:text="Name : "
                     android:textStyle="bold"
                     android:textSize="18dp"/>
-                <TextView
+                <EditText
                     android:id="@+id/etName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -82,27 +82,33 @@ tools:context=".PatientProfileEditPage">
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp">
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
                     android:text="Gender : "
+                    android:layout_gravity="center_vertical"
                     android:gravity="center"
                     android:textStyle="bold"
-                    android:textSize="18dp"/>
-                <CheckBox
-                    android:id="@+id/cbMale"
+                    android:textSize="18dp" />
+                <RadioGroup
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Male"
-                    android:textStyle="bold"/>
-                <CheckBox
-                    android:id="@+id/cbFemale"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Female"
-                    android:textStyle="bold"/>
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/cbMale"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Male"/>
+                    <RadioButton
+                        android:id="@+id/cbFemale"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Female"/>
+                </RadioGroup>
 
 
             </TableRow>
@@ -121,7 +127,7 @@ tools:context=".PatientProfileEditPage">
                     android:text="Date of Birth: "
                     android:textStyle="bold"
                     android:textSize="18dp"/>
-                <TextView
+                <EditText
                     android:id="@+id/etAge"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -145,8 +151,8 @@ tools:context=".PatientProfileEditPage">
                     android:text="Height: "
                     android:textStyle="bold"
                     android:textSize="18dp"/>
-                <TextView
-                    android:id="@+id/tvHeight"
+                <EditText
+                    android:id="@+id/etHeight"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
@@ -169,8 +175,8 @@ tools:context=".PatientProfileEditPage">
                     android:text="Weight "
                     android:textStyle="bold"
                     android:textSize="18dp"/>
-                <TextView
-                    android:id="@+id/tvWeight"
+                <EditText
+                    android:id="@+id/etWeight"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
@@ -193,8 +199,8 @@ tools:context=".PatientProfileEditPage">
                     android:text="Phone: "
                     android:textStyle="bold"
                     android:textSize="18dp"/>
-                <TextView
-                    android:id="@+id/tvPhone"
+                <EditText
+                    android:id="@+id/etPhone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
