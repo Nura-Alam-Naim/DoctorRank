@@ -58,10 +58,12 @@
                 android:layout_height="wrap_content"
                 android:text="Name : "
                 android:textStyle="bold"
+                android:textColor="#000000"
                 android:textSize="18dp"/>
             <EditText
                 android:id="@+id/etName"
                 android:layout_width="0dp"
+                android:textColor="#000000"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
 
@@ -76,11 +78,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Email : "
+                android:textColor="#000000"
                 android:textStyle="bold"
                 android:textSize="18dp"/>
             <EditText
                 android:id="@+id/etEmail"
                 android:layout_width="0dp"
+                android:textColor="#000000"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
 
@@ -95,11 +99,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Phone : "
+                android:textColor="#000000"
                 android:textStyle="bold"
                 android:textSize="18dp"/>
             <EditText
+                android:hint="Bangladeshi Number"
                 android:id="@+id/etPhone"
                 android:layout_width="0dp"
+                android:textColor="#000000"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
 
@@ -114,6 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Password : "
+                android:textColor="#000000"
                 android:textStyle="bold"
                 android:textSize="18dp"/>
             <EditText
@@ -121,6 +129,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="#000000"
                 android:inputType="numberPassword"/>
 
         </TableRow>
@@ -135,12 +144,14 @@
                 android:layout_height="wrap_content"
                 android:text="Re-enter Password : "
                 android:textStyle="bold"
+                android:textColor="#000000"
                 android:textSize="18dp"/>
             <EditText
                 android:id="@+id/etRePassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="#000000"
                 android:inputType="numberPassword"/>
 
         </TableRow>
@@ -157,6 +168,7 @@
                 android:text="Gender : "
                 android:textStyle="bold"
                 android:textSize="18sp"
+                android:textColor="#000000"
                 android:gravity="center_vertical"
                 android:layout_marginRight="20dp"/>
             <LinearLayout
@@ -174,14 +186,16 @@
                         android:id="@+id/cbMale"
                         android:layout_width="0dp"
                         android:layout_weight="1"
+                        android:textColor="#000000"
                         android:layout_height="wrap_content"
-                        android:text="Male"
+                        android:text="Male"/>
 />
 
                     <RadioButton
                         android:id="@+id/cbFemale"
                         android:layout_width="0dp"
                         android:layout_weight="1"
+                        android:textColor="#000000"
                         android:layout_height="wrap_content"
                         android:text="Female" />
                 </RadioGroup>
@@ -196,12 +210,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Date of Birth : "
+                android:textColor="#000000"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:gravity="center_vertical"/>
             <EditText
                 android:id="@+id/etDOB"
                 android:layout_width="0dp"
+                android:textColor="#000000"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginBottom="10dp"
@@ -217,6 +233,7 @@
             android:layout_height="match_parent"
             android:text="Height: "
             android:textStyle="bold"
+            android:textColor="#000000"
             android:textSize="18sp"
             android:gravity="center_vertical"
             android:layout_marginRight="5dp"/>
@@ -224,6 +241,7 @@
             android:id="@+id/etHeight"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:textColor="#000000"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:hint="Feet' Inch''"/>
@@ -231,6 +249,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Weight: "
+            android:textColor="#000000"
             android:textStyle="bold"
             android:textSize="18sp"
             android:gravity="center_vertical"
@@ -239,6 +258,7 @@
             android:id="@+id/etWeight"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:textColor="#000000"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:hint="KG"/>

@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="#06a9b1"
-        android:padding="10dp"
+        android:padding="16dp"
         android:layout_marginBottom="20dp">
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,8 +41,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Appointment  Date: "
-                android:textSize="20sp"
+                android:text="Date: "
+                android:paddingRight="10dp"
+                android:textSize="20dp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
                 android:layout_marginBottom="8dp" />
@@ -66,7 +67,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Appointment Time: "
+                android:text="Time: "
+                android:paddingRight="10dp"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:textColor="#ffffff"

@@ -32,6 +32,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterPage extends AppCompatActivity {
 
@@ -157,6 +159,12 @@ public class RegisterPage extends AppCompatActivity {
             return;
         }
 
+        if(!isValidNumber(phone)){
+            Toast.makeText(this,"Phone number is invalid",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
         String gender= cbMale.isChecked() ? "Male" : "Female";
 
         mAuth = FirebaseAuth.getInstance();
@@ -237,6 +245,13 @@ public class RegisterPage extends AppCompatActivity {
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
         java.util.regex.Matcher m = p.matcher(email);
         return m.matches();
+    }
+
+    public static boolean isValidNumber(String number) {
+        String nameRegex = "^01[356789]\\d{8}$";
+        Pattern pattern = Pattern.compile(nameRegex);
+        Matcher matcher = pattern.matcher(number);
+        return matcher.matches();
     }
     public boolean isValidDOB(String dob)
     {

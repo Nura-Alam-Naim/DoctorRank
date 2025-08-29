@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Slot"
+
         android:textSize="16sp"
         android:textColor="#333333"
         android:padding="6dp"/>

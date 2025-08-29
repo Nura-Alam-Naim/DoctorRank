@@ -45,12 +45,13 @@
     <!-- Doctor Info -->
     <TextView
         android:id="@+id/doctorSpeciality"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Specialist "
         android:textColor="#000000"
         android:textStyle="bold"
         android:textSize="15dp"
+        android:layout_marginRight="20dp"
         android:layout_toEndOf="@id/doctorPhoto"
         android:layout_below="@id/doctorRating"
         android:layout_marginTop="4dp"/>
@@ -64,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/doctorRating"
-        android:layout_marginStart="87dp"
+        android:layout_marginStart="91dp"
         android:layout_marginTop="-19dp"
         android:layout_toEndOf="@id/doctorRating"
         android:text="Charge: "
@@ -74,10 +75,9 @@
 
     <TextView
         android:id="@+id/doctorRoom"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/doctorRating"
-        android:layout_marginStart="98dp"
         android:layout_marginTop="6dp"
         android:layout_toEndOf="@id/doctorSpeciality"
         android:text="Room No: "
@@ -104,7 +104,7 @@
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/doctorSpeciality"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="12dp"
         android:layout_toEndOf="@id/profile"
         android:text="Book Now"
