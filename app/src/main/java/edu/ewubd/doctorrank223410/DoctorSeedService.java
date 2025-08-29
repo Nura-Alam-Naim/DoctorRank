@@ -66,7 +66,7 @@ public class DoctorSeedService extends JobIntentService {
                 getSharedPreferences("my_pr", MODE_PRIVATE).edit().putBoolean("seeded", true).apply();
             }
 
-            Log.d("DoctorSeedService", "Seeding complete (or no data)."); // STEP 3 (log 3)
+            Log.d("DoctorSeedService", "Seeding complete ");
         } catch (Exception e) {
             Log.e("DoctorSeedService", "onHandleWork exception", e); // STEP 3 (error log)
             e.printStackTrace();
