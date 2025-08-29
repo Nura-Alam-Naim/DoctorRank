@@ -21,7 +21,7 @@ public class MyAppointments extends AppCompatActivity {
 
     private ListView lvAppointments;
     private AppointmentListAdapter adapter;
-    private ArrayList<Booking> appointmentList = new ArrayList<>();
+    private ArrayList<UserBooking> appointmentList = new ArrayList<>();
 
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private final Handler handler = new Handler(Looper.getMainLooper());
@@ -29,33 +29,51 @@ public class MyAppointments extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String userId = FirebaseAuth.getInstance().getUid();
+        if (userId == null) {
+            Toast.makeText(this, "Please Login First", Toast.LENGTH_SHORT).show();
+            return;
+        }
         setContentView(R.layout.activity_my_appointments);
 
         lvAppointments = findViewById(R.id.lvAppointments);
-        String userId = FirebaseAuth.getInstance().getUid();
-        loadAppointments(userId);
         adapter = new AppointmentListAdapter(this, appointmentList);
         lvAppointments.setAdapter(adapter);
+
+        loadAppointments(userId);
     }
+
     private void loadAppointments(String userId) {
         executor.execute(() -> {
             DatabaseReference ref = FirebaseDatabase.getInstance()
                     .getReference("user_bookings")
                     .child(userId);
 
+            // still async, but runs inside our executor thread
             ref.get().addOnSuccessListener(snapshot -> {
-                ArrayList<Booking> localList = new ArrayList<>();
+                ArrayList<UserBooking> localList = new ArrayList<>();
                 for (DataSnapshot child : snapshot.getChildren()) {
-                    Booking booking = child.getValue(Booking.class);
+                    UserBooking booking = child.getValue(UserBooking.class);
                     if (booking != null) {
                         localList.add(booking);
+                        System.out.println("Adding info");
                     }
                 }
+
+                // push result back to UI thread
                 handler.post(() -> {
                     appointmentList.clear();
                     appointmentList.addAll(localList);
+                    adapter.notifyDataSetChanged();
                 });
-            });
+
+            }).addOnFailureListener(e ->
+                    handler.post(() -> Toast.makeText(
+                            MyAppointments.this,
+                            "Failed to load data: " + e.getMessage(),
+                            Toast.LENGTH_SHORT).show()
+                    )
+            );
         });
     }
 }

@@ -11,12 +11,12 @@ import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 
-public class AppointmentListAdapter extends ArrayAdapter<Booking> {
+public class AppointmentListAdapter extends ArrayAdapter<UserBooking> {
 
     private final Context context;
-    private final ArrayList<Booking> values;
+    private final ArrayList<UserBooking> values;
 
-    public AppointmentListAdapter(@NonNull Context context, @NonNull ArrayList<Booking> items) {
+    public AppointmentListAdapter(@NonNull Context context, @NonNull ArrayList<UserBooking> items) {
         super(context, -1, items);
         this.context = context;
         this.values = items;
@@ -25,23 +25,21 @@ public class AppointmentListAdapter extends ArrayAdapter<Booking> {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(context);
-            convertView = inflater.inflate(R.layout.row_appoinments, parent, false);
-        }
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View rowView = inflater.inflate(R.layout.row_appoinments, parent, false);
 
-        Booking booking = values.get(position);
+        UserBooking booking = values.get(position);
 
-        TextView tvDate = convertView.findViewById(R.id.tvDate);
-        TextView tvTime = convertView.findViewById(R.id.tvTime);
-        TextView tvDName = convertView.findViewById(R.id.tvDName);
-        TextView tvSpeciality = convertView.findViewById(R.id.tvSpeciality);
+        TextView tvDate = rowView.findViewById(R.id.tvDate);
+        TextView tvTime = rowView.findViewById(R.id.tvTime);
+        TextView tvDName = rowView.findViewById(R.id.tvDName);
+        TextView tvSpeciality = rowView.findViewById(R.id.tvSpeciality);
 
         tvDate.setText(booking.date);
         tvTime.setText(booking.time);
         tvDName.setText(booking.doctorName);
         tvSpeciality.setText(booking.specialization);
 
-        return convertView;
+        return rowView;
     }
 }
