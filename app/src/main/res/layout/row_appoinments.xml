@@ -6,18 +6,18 @@
     android:orientation="horizontal">
     <TextView
         android:id="@+id/tvDate"
-        android:layout_width="80dp"
+        android:layout_width="90dp"
         android:layout_height="match_parent"
         android:text="Date"
         android:textSize="15sp"
-        android:gravity="center"/>
+        android:paddingLeft="10dp"/>
     <TextView
         android:id="@+id/tvTime"
         android:layout_width="80dp"
         android:layout_height="match_parent"
         android:text="time"
         android:textSize="15sp"
-        android:gravity="center"/>
+        android:paddingLeft="5dp"/>
     <TextView
         android:id="@+id/tvDName"
         android:layout_width="0dp"
@@ -25,6 +25,7 @@
         android:layout_height="match_parent"
         android:text="Doctor Name"
         android:textSize="15sp"
+        android:paddingLeft="5dp"
         android:gravity="center"/>
     <TextView
         android:id="@+id/tvSpeciality"
@@ -32,6 +33,7 @@
         android:layout_height="match_parent"
         android:text="Speciality"
         android:textSize="15sp"
+        android:paddingLeft="5dp"
         android:gravity="center"/>
 
 </LinearLayout>

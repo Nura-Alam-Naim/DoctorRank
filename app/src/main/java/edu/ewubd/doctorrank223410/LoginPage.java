@@ -94,6 +94,9 @@ public class LoginPage extends AppCompatActivity {
                         editor.remove("password");
                         editor.apply();
                     }
+                    Intent intent = new Intent(LoginPage.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                     finish();
                 } else {
                     Toast.makeText(LoginPage.this, "Invalid Credential ", Toast.LENGTH_LONG).show();

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,10 +23,10 @@ public class UserProfilePage extends AppCompatActivity {
 
     private ImageView ivProfilePicture;
     private TextView tvName, tvDOB, tvHeight, tvWeight, tvPhone, tvEmail, tvGender;
-    private CheckBox cbMale, cbFemale;
     private Button btLogout, btEditProfile, btAppointment;
     private String base64String;
     FirebaseAuth mAuth;
+    T_Users user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,6 @@ public class UserProfilePage extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile_page);
 
         ivProfilePicture = findViewById(R.id.ivProfilePicture);
-
         tvName = findViewById(R.id.tvName);
         tvDOB = findViewById(R.id.tvDOB);
         tvHeight = findViewById(R.id.tvHeight);
@@ -43,7 +41,6 @@ public class UserProfilePage extends AppCompatActivity {
         tvPhone = findViewById(R.id.tvPhone);
         tvEmail = findViewById(R.id.tvEmail);
         tvGender = findViewById(R.id.tvGender);
-
 
         btLogout = findViewById(R.id.btLogout);
         btEditProfile = findViewById(R.id.btEditProfile);
@@ -57,7 +54,7 @@ public class UserProfilePage extends AppCompatActivity {
 
             ref.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    T_Users user = task.getResult().getValue(T_Users.class);
+                    user = task.getResult().getValue(T_Users.class);
                     if (user != null) {
                         tvName.setText(user.name);
                         tvEmail.setText(user.email);
@@ -88,25 +85,33 @@ public class UserProfilePage extends AppCompatActivity {
             Toast.makeText(this, "No user logged in", Toast.LENGTH_SHORT).show();
         }
 
-        btLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAuth.signOut();
-                SharedPreferences sp = getSharedPreferences("login", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sp.edit();
-                editor.putBoolean("rememberLogin", false);
-                editor.apply();
-                Toast.makeText(UserProfilePage.this, "Logged out successfully", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(UserProfilePage.this, MainActivity.class));
-                finish();
-            }
+        btLogout.setOnClickListener(v -> {
+            mAuth.signOut();
+            SharedPreferences sp = getSharedPreferences("login", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putBoolean("rememberLogin", false);
+            editor.apply();
+            Toast.makeText(UserProfilePage.this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(UserProfilePage.this, MainActivity.class));
+            finishAffinity();
         });
-        btAppointment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent I =new Intent(UserProfilePage.this, MyAppointments.class);
-                startActivity(I);
-            }
+
+        btAppointment.setOnClickListener(v -> {
+            Intent I = new Intent(UserProfilePage.this, MyAppointments.class);
+            startActivity(I);
+        });
+
+        btEditProfile.setOnClickListener(v -> {
+            Intent I = new Intent(UserProfilePage.this, PatientProfileEditPage.class);
+            I.putExtra("name", tvName.getText().toString());
+            I.putExtra("phone", tvPhone.getText().toString());
+            I.putExtra("dob", tvDOB.getText().toString());
+            I.putExtra("height", tvHeight.getText().toString());
+            I.putExtra("weight", tvWeight.getText().toString());
+            I.putExtra("gender", tvGender.getText().toString());
+            SharedPreferences sp = getSharedPreferences("Login", MODE_PRIVATE);
+            sp.edit().putString("ProfilePic", base64String).apply();
+            startActivity(I);
         });
     }
 }

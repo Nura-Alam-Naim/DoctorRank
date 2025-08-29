@@ -98,16 +98,10 @@ public class MainActivity extends AppCompatActivity {
         btProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(currentUser != null)
-                {
-                    Intent i=new Intent(MainActivity.this, UserProfilePage.class);
-                    startActivity(i);
-                }
-                else
-                {
-                    Intent i=new Intent(MainActivity.this, LoginPage.class);
-                    startActivity(i);
-                    recreate();
+                if (currentUser != null) {
+                    startActivity(new Intent(MainActivity.this, UserProfilePage.class));
+                } else {
+                    startActivity(new Intent(MainActivity.this, LoginPage.class));
                 }
             }
         });

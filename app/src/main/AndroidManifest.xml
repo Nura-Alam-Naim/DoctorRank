@@ -15,6 +15,9 @@
         android:theme="@style/Theme.DoctorRank223410"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".UpdatePass"
+            android:exported="false" />
+        <activity
             android:name=".MyAppointments"
             android:exported="false" />
         <activity

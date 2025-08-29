@@ -127,8 +127,6 @@ public class RegisterPage extends AppCompatActivity {
         String weight=etWeight.getText().toString().trim();
         String image=base64String;
 
-
-
         if (name.length() < 4) {
             Toast.makeText(this, "Invalid Name", Toast.LENGTH_SHORT).show();
             return;
@@ -151,6 +149,11 @@ public class RegisterPage extends AppCompatActivity {
 
         if (!cbMale.isChecked() && !cbFemale.isChecked()) {
             Toast.makeText(this, "Please select gender", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!isValidDOB(dob)) {
+            Toast.makeText(this, "Invalid Date of Birth. Use correct format: DD/MM/YYYY", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -233,6 +236,13 @@ public class RegisterPage extends AppCompatActivity {
         String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
         java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
+    }
+    public boolean isValidDOB(String dob)
+    {
+        String ePattern = "^(0[1-9]|[12]\\d|3[01])/(0[1-9]|1[0-2])/(19|20)\\d\\d$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(dob);
         return m.matches();
     }
 }

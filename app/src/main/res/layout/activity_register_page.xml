@@ -203,7 +203,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:hint="DD/MM/YYYY"
+                android:paddingLeft="15dp"/>
         </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -216,13 +218,14 @@
             android:textStyle="bold"
             android:textSize="18sp"
             android:gravity="center_vertical"
-            android:layout_marginRight="20dp"/>
+            android:layout_marginRight="5dp"/>
         <EditText
             android:id="@+id/etHeight"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:hint="Feet' Inch''"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -230,13 +233,14 @@
             android:textStyle="bold"
             android:textSize="18sp"
             android:gravity="center_vertical"
-            android:layout_marginRight="20dp"/>
+            android:layout_marginRight="5dp"/>
         <EditText
             android:id="@+id/etWeight"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:hint="KG"/>
     </LinearLayout>
 
 
