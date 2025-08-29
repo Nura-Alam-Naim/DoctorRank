@@ -4,7 +4,6 @@
 xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
-
 android:id="@+id/main"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
@@ -23,12 +22,12 @@ tools:context=".MainActivity">
     android:textColor="@color/black"
     android:textStyle="normal"
     android:background="#3DBABA"
-    android:layout_marginBottom="3dp"/>
+    android:layout_marginBottom="3dp"
+    android:layout_marginTop="30dp"/>
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
+    android:layout_height="80dp"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -60,8 +59,6 @@ tools:context=".MainActivity">
             android:backgroundTint="#000000"
             android:layout_marginBottom="3dp"/>
 
-
-
     </LinearLayout>
 
     <LinearLayout
@@ -69,7 +66,7 @@ tools:context=".MainActivity">
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:padding="15dp">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/tvDate"
@@ -94,8 +91,7 @@ tools:context=".MainActivity">
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
+    android:layout_height="80dp"
     android:orientation="horizontal"
     android:gravity="center"
     android:padding="10dp">
@@ -121,24 +117,84 @@ tools:context=".MainActivity">
         android:layout_marginRight="5dp"/>
 
 </LinearLayout>
-
-<ListView
-    android:id="@+id/lvDoctorList"
+<LinearLayout
+    android:id="@+id/SetVisible"
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    android:layout_weight="5"
-    android:layout_marginBottom="5dp"/>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center">
-    <Button
-        android:id="@+id/btMyAppoinments"
-        android:layout_width="wrap_content"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    android:paddingTop="20dp">
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Past Appoinments"
-        android:backgroundTint="#000000"/>
+        android:text="Appointment Today"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:background="@color/white"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="Date"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="Time"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Doctor Name"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:text="Speciality"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:gravity="center"/>
+    </LinearLayout>
+    <ListView
+        android:id="@+id/lvDoctorList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:layout_marginBottom="15dp"/>
+
 </LinearLayout>
+    <TextView
+        android:id="@+id/tvNoAppointments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="No appointments today"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:visibility="gone"
+        android:padding="10dp"
+        android:textColor="@color/black"/>
+    <TextView
+        android:id="@+id/tvLog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Please Log in First "
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:visibility="gone"
+        android:padding="10dp"
+        android:textColor="@color/black"/>
 
 </LinearLayout>

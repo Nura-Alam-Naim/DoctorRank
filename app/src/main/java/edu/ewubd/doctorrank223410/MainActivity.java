@@ -11,6 +11,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,21 +20,25 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     private ImageView ivProfilePicture ;
-    private TextView tvDate, tvDay ;
+    private TextView tvDate, tvDay,  tvNoAppointments, tvLog;
     private ListView lvDoctorList ;
     private DoctorListAdapter DocList;
-    private Button btProfile, btUpcomingAppointments, btBookPreferedDoc, btMyAppoinments;
+    private LinearLayout SetVisible;
+    private Button btProfile, btUpcomingAppointments, btBookPreferedDoc;
     private SharedPreferences sp;
-    private ArrayList<T_DoctorInfo> DoctorInfo=new ArrayList<>();
+    private AppointmentListAdapter todayAdapter;
+    private ArrayList<UserBooking> todayAppointments = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +51,24 @@ public class MainActivity extends AppCompatActivity {
         btProfile = findViewById(R.id.btProfile) ;
         btUpcomingAppointments = findViewById(R.id.btUpcomingAppointments) ;
         btBookPreferedDoc = findViewById(R.id.btBookPreferedDoc) ;
-        btMyAppoinments = findViewById(R.id.btMyAppoinments) ;
+        tvNoAppointments = findViewById(R.id.tvNoAppointments);
+        tvLog=findViewById(R.id.tvLog);
+        SetVisible = findViewById(R.id.SetVisible);
         setDateAndDay();
-
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(currentUser != null)
+        {
+            tvLog.setVisibility(View.GONE);
+            SetVisible.setVisibility(View.VISIBLE);
+            todayAdapter = new AppointmentListAdapter(this, todayAppointments);
+            lvDoctorList.setAdapter(todayAdapter);
+            loadTodaysAppointments(currentUser.getUid());
+        }
+        else
+        {
+            tvLog.setVisibility(View.VISIBLE);
+            SetVisible.setVisibility(View.GONE);
+        }
         if (currentUser != null) {
             btProfile.setText("Profile");
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child(currentUser.getUid());
@@ -88,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 {
                     Intent i=new Intent(MainActivity.this, LoginPage.class);
                     startActivity(i);
+                    recreate();
                 }
             }
         });
@@ -97,22 +117,6 @@ public class MainActivity extends AppCompatActivity {
                 if(currentUser != null)
                 {
                     Intent i=new Intent(MainActivity.this, UpcomingAppointment.class);
-                    startActivity(i);
-                }
-                else
-                {
-                    Toast.makeText(getApplicationContext(), "Please Login First", Toast.LENGTH_SHORT).show();
-                    Intent i=new Intent(MainActivity.this, LoginPage.class);
-                    startActivity(i);
-                }
-            }
-        });
-        btMyAppoinments.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(currentUser != null)
-                {
-                    Intent i=new Intent(MainActivity.this, PastAppointment.class);
                     startActivity(i);
                 }
                 else
@@ -141,4 +145,51 @@ public class MainActivity extends AppCompatActivity {
         tvDate.setText(currentDate);
         tvDay.setText(currentDay);
     }
+    private void loadTodaysAppointments(String userId) {
+        DatabaseReference ref = FirebaseDatabase.getInstance()
+                .getReference("user_bookings")
+                .child(userId);
+
+        ref.get().addOnSuccessListener(snapshot -> {
+            ArrayList<UserBooking> localList = new ArrayList<>();
+
+            java.util.Calendar cal = java.util.Calendar.getInstance();
+            cal.set(java.util.Calendar.HOUR_OF_DAY, 0);
+            cal.set(java.util.Calendar.MINUTE, 0);
+            cal.set(java.util.Calendar.SECOND, 0);
+            cal.set(java.util.Calendar.MILLISECOND, 0);
+            Date today = cal.getTime();
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+
+            for (DataSnapshot child : snapshot.getChildren()) {
+                UserBooking booking = child.getValue(UserBooking.class);
+                if (booking != null) {
+                    try {
+                        Date bookingDate = sdf.parse(booking.date);
+                        if (bookingDate != null && bookingDate.equals(today)) {
+                            localList.add(booking);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            todayAppointments.clear();
+            todayAppointments.addAll(localList);
+            todayAdapter.notifyDataSetChanged();
+
+            if (todayAppointments.isEmpty()) {
+                tvNoAppointments.setVisibility(View.VISIBLE);
+                lvDoctorList.setVisibility(View.GONE);
+            } else {
+                tvNoAppointments.setVisibility(View.GONE);
+                lvDoctorList.setVisibility(View.VISIBLE);
+            }
+
+        }).addOnFailureListener(e ->
+                Toast.makeText(this, "Failed to load today's appointments: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+        );
+    }
+
 }
