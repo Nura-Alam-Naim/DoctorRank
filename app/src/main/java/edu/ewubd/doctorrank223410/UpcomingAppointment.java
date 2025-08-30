@@ -1,5 +1,6 @@
 package edu.ewubd.doctorrank223410;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -27,7 +28,7 @@ public class UpcomingAppointment extends AppCompatActivity {
 
     private ListView lvUpComingAppointments;
     private Button btBack;
-    private AppointmentListAdapter adapter;
+    private UpcomingAppointmentListAdapter adapter;
     private ArrayList<UserBooking> upcomingAppointments = new ArrayList<>();
     private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
@@ -42,7 +43,7 @@ public class UpcomingAppointment extends AppCompatActivity {
         lvUpComingAppointments = findViewById(R.id.lvUpComingAppointments);
         btBack = findViewById(R.id.btBack);
 
-        adapter = new AppointmentListAdapter(this, upcomingAppointments);
+        adapter = new UpcomingAppointmentListAdapter(this, upcomingAppointments);
         lvUpComingAppointments.setAdapter(adapter);
 
         btBack.setOnClickListener(v -> finish());
@@ -90,5 +91,15 @@ public class UpcomingAppointment extends AppCompatActivity {
                     )
             );
         });
+    }
+    protected void onResume() {
+        super.onResume();
+
+        String userId = FirebaseAuth.getInstance().getUid();
+        if (userId != null) {
+            loadUpcomingAppointments(userId);  // Reload the list of appointments
+        } else {
+            Toast.makeText(this, "Please login first", Toast.LENGTH_SHORT).show();
+        }
     }
 }

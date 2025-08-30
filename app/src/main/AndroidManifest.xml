@@ -15,6 +15,9 @@
         android:theme="@style/Theme.DoctorRank223410"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".CancelConfirmation"
+            android:exported="false" />
+        <activity
             android:name=".UpdatePass"
             android:exported="true" />
         <activity

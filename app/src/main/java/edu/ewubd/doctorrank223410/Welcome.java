@@ -28,7 +28,6 @@ public class Welcome extends AppCompatActivity {
         if(!seeded)
         {
             DoctorSeedService.enqueue(this);
-            Toast.makeText(this, "Seeding doctors, please wait…", Toast.LENGTH_SHORT).show();
         }
         if(isDone)
         {
