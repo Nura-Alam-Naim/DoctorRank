@@ -96,8 +96,7 @@ public class DateSelection extends AppCompatActivity {
             if (bookingKey != null) {
                 UserBooking userBooking = new UserBooking(selectedDate, chosenSlot, doctor.name, doctor.speciality, doctorId, bookingKey);
 
-                Booking booking = new Booking(userId, doctorId, doctorName, doctor.speciality, doctor.roomNo,
-                        selectedDate, chosenSlot, bookingKey);
+                Booking booking = new Booking(userId,bookingKey);
 
                 db.child("bookings").child(doctorId).child(selectedDate).child(chosenSlot)
                         .setValue(booking)
@@ -115,9 +114,7 @@ public class DateSelection extends AppCompatActivity {
                         });
             }
         });
-
     }
-
     private void loadSlotsForDate(String date) {
         executor.execute(() -> {
             doctor = DoctorsDB.get(this).getById(doctorId);
@@ -125,7 +122,6 @@ public class DateSelection extends AppCompatActivity {
                 handler.post(() -> Toast.makeText(this, "Doctor not found!", Toast.LENGTH_SHORT).show());
                 return;
             }
-
             String dayName = null;
             try {
                 Date parsed = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(date);
