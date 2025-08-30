@@ -119,15 +119,16 @@ public class RegisterPage extends AppCompatActivity {
         }
     }
     private void validateFields() {
+        String image=base64String;
         String name = etName.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
+        String phone=etPhone.getText().toString().trim();
         String pass = etPassword.getText().toString().trim();
         String rePass = etRePassword.getText().toString().trim();
-        String phone=etPhone.getText().toString().trim();
         String dob=etdob.getText().toString().trim();
         String height=etHeight.getText().toString().trim();
         String weight=etWeight.getText().toString().trim();
-        String image=base64String;
+
 
         if (name.length() < 4) {
             Toast.makeText(this, "Invalid Name", Toast.LENGTH_SHORT).show();
@@ -136,6 +137,11 @@ public class RegisterPage extends AppCompatActivity {
 
         if (!isValidEmailAddress(email)) {
             Toast.makeText(this, "Invalid Email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(!isValidNumber(phone)){
+            Toast.makeText(this,"Phone number is invalid",Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -159,10 +165,7 @@ public class RegisterPage extends AppCompatActivity {
             return;
         }
 
-        if(!isValidNumber(phone)){
-            Toast.makeText(this,"Phone number is invalid",Toast.LENGTH_SHORT).show();
-            return;
-        }
+
 
 
         String gender= cbMale.isChecked() ? "Male" : "Female";
@@ -247,10 +250,10 @@ public class RegisterPage extends AppCompatActivity {
         return m.matches();
     }
 
-    public static boolean isValidNumber(String number) {
+    public static boolean isValidNumber(String phone) {
         String nameRegex = "^01[356789]\\d{8}$";
         Pattern pattern = Pattern.compile(nameRegex);
-        Matcher matcher = pattern.matcher(number);
+        Matcher matcher = pattern.matcher(phone);
         return matcher.matches();
     }
     public boolean isValidDOB(String dob)

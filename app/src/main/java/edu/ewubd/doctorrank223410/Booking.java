@@ -6,8 +6,9 @@ public class Booking {
     public String doctorName;
     public String specialization;
     public int roomNo;
-    public String date;
-    public String time;
+
+    public String date, time;
+
     public String bookingKey;
     public Booking() {}
 

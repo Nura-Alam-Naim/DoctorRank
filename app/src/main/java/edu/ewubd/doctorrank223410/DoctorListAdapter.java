@@ -33,7 +33,7 @@ public class DoctorListAdapter extends ArrayAdapter<T_DoctorInfo> {
         super(context, -1, items);
         this.context = context;
         this.values = items;
-        this.allValues = new ArrayList<>(items); // keep a full copy
+        this.allValues = new ArrayList<>(items);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class DoctorListAdapter extends ArrayAdapter<T_DoctorInfo> {
         Button profileBtn = rowView.findViewById(R.id.profile);
         Button bookNowBtn = rowView.findViewById(R.id.bookNow);
 
-        // Set values
+
         doctorName.setText(doctor.name);
         doctorSpeciality.setText(doctor.speciality);
         doctorRoom.setText("Room No: " + doctor.roomNo);
