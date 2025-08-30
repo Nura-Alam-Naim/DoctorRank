@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:gravity="center"
     android:padding="8dp">
 
     <Button
@@ -13,5 +14,6 @@
         android:backgroundTint="#f29e23"
         android:text="09:00 AM - 09:30 AM"
         android:enabled="true"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:gravity="center"/>
 </LinearLayout>

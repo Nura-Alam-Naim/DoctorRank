@@ -16,7 +16,8 @@
             android:text="Date"
             android:textColor="#000000"
             android:textSize="15sp"
-            android:paddingLeft="10dp"/>
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"/>
         <TextView
             android:id="@+id/tvTime"
             android:layout_width="80dp"
@@ -52,8 +53,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cancel"
-        android:backgroundTint="#f29e23"
-        android:textColor="@color/black"
+        android:backgroundTint="#06a9b1"
+        android:textColor="#FFFFFF"
         android:gravity="center"/>
 </LinearLayout>
 

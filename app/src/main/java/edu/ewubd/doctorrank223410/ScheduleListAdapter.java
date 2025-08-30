@@ -25,10 +25,8 @@ public class ScheduleListAdapter extends ArrayAdapter<ScheduleItem> {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(context);
             convertView = inflater.inflate(R.layout.row_schedule_slot, parent, false);
-        }
 
         TextView tvDay = convertView.findViewById(R.id.tvDay);
         TextView tvSlot = convertView.findViewById(R.id.tvSlot);
@@ -36,13 +34,11 @@ public class ScheduleListAdapter extends ArrayAdapter<ScheduleItem> {
         ScheduleItem item = items.get(position);
 
         if (item.isDayHeader) {
-            // Show the day row
             tvDay.setVisibility(View.VISIBLE);
             tvSlot.setVisibility(View.GONE);
             tvDay.setText(item.text);
 
         } else {
-            // Show the slot row
             tvDay.setVisibility(View.GONE);
             tvSlot.setVisibility(View.VISIBLE);
             tvSlot.setText(item.text);

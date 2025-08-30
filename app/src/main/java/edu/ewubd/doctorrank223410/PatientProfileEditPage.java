@@ -61,6 +61,7 @@ public class PatientProfileEditPage extends AppCompatActivity {
         if (intent != null) {
             SharedPreferences sp = getSharedPreferences("Login", MODE_PRIVATE);
             String base64Image = sp.getString("ProfilePic", "");
+            base64String = base64Image;
             if (base64Image != null && !base64Image.isEmpty()) {
                 try {
                     byte[] bytes = Base64.decode(base64Image, Base64.DEFAULT);
@@ -155,7 +156,7 @@ public class PatientProfileEditPage extends AppCompatActivity {
                 dob,
                 height,
                 weight,
-                base64String != null ? base64String : "",
+                base64String,
                 uid
         );
 

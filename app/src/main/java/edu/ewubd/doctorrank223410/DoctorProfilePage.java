@@ -56,7 +56,7 @@ public class DoctorProfilePage extends AppCompatActivity {
             tvDoctorQualification.setText(doctor.speciality);
             tvDoctorRating.setText(String.valueOf(doctor.rating));
             tvDoctorBMDCno.setText(doctor.BDMC);
-            tvDoctorCharge.setText(String.valueOf(doctor.charge));
+            tvDoctorCharge.setText("Charge: " + String.valueOf(doctor.charge));
 
             // Show picture
             if (doctor.picture != null && !doctor.picture.isEmpty()) {
@@ -69,7 +69,6 @@ public class DoctorProfilePage extends AppCompatActivity {
                 }
             }
 
-            // ---- NEW: Populate schedule ----
             ArrayList<ScheduleItem> scheduleItems = new ArrayList<>();
             if (doctor.schedule != null && !doctor.schedule.isEmpty()) {
                 for (String day : doctor.schedule.keySet()) {
