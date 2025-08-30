@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:queryHint="Search doctors..."
         android:iconifiedByDefault="false"
-        android:layout_marginBottom="12dp"/>
+        android:layout_marginBottom="12dp" />
 
     <!-- Scrollable Doctor List -->
     <ListView
