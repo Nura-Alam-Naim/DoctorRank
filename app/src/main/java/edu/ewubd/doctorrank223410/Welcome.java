@@ -14,6 +14,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class Welcome extends AppCompatActivity {
 
     private Button btGetStarted;
@@ -25,6 +27,7 @@ public class Welcome extends AppCompatActivity {
         sp=getSharedPreferences("my_pr", MODE_PRIVATE);
         boolean isDone=sp.getBoolean("isDone", false);
         boolean seeded = sp.getBoolean("seeded", false);
+        boolean rememberLogin = sp.getBoolean("rememberLogin", false);
         if(!seeded)
         {
             DoctorSeedService.enqueue(this);
@@ -47,6 +50,10 @@ public class Welcome extends AppCompatActivity {
                 prEdit.apply();
                 Intent i = new Intent(Welcome.this, MainActivity.class);
                 startActivity(i);
+                if(!rememberLogin)
+                {
+                    FirebaseAuth.getInstance().signOut();
+                }
                 finishAffinity();
             }
         });
