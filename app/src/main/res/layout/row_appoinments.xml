@@ -11,7 +11,8 @@
         android:text="Date"
         android:textColor="#000000"
         android:textSize="15sp"
-        android:paddingLeft="10dp"/>
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"/>
     <TextView
         android:id="@+id/tvTime"
         android:layout_width="80dp"
