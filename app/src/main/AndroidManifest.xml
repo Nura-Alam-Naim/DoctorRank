@@ -24,7 +24,7 @@
             android:name=".MyAppointments"
             android:exported="true" />
         <activity
-            android:name=".DoctorSelectionPage"
+            android:name=".TodaysAppointment"
             android:exported="true" />
         <activity
             android:name=".Welcome"

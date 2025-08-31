@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,7 @@ public class MyAppointments extends AppCompatActivity {
 
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private final Handler handler = new Handler(Looper.getMainLooper());
+    private TextView noAppointments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

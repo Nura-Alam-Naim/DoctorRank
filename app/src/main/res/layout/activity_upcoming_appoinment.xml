@@ -10,6 +10,12 @@
     android:orientation="vertical"
     android:background="#FFFFFF"
     android:padding="12dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    </LinearLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,6 +75,18 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
+    <TextView
+        android:id="@+id/tvNoAppointments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="You Have NO Appointments"
+        android:textSize="20sp"
+        android:textStyle="italic|bold"
+        android:visibility="gone"
+        android:padding="10dp"
+        android:textColor="@color/black"/>
     <Button
         android:id="@+id/btBack"
         android:layout_width="match_parent"

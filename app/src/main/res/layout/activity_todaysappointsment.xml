@@ -7,11 +7,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DoctorSelectionPage"
+    tools:context=".TodaysAppointment"
     android:background="@color/white"
     android:paddingTop="50dp"
     android:paddingRight="15dp"
-    android:paddingLeft="15dp">
+    android:paddingLeft="15dp"
+    android:paddingBottom="12dp">
 <!--    <SearchView-->
 <!--        android:id="@+id/doctorSearchView"-->
 <!--        android:layout_width="match_parent"-->
@@ -96,6 +97,13 @@
         android:visibility="gone"
         android:padding="10dp"
         android:textColor="@color/black"/>
+    <Button
+        android:id="@+id/btBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#f29e23"
+        android:textColor="@color/black"
+        android:text="Back"/>
 
 
 </LinearLayout>

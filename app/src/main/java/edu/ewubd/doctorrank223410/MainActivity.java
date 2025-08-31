@@ -8,27 +8,22 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.graphics.Color;
-import android.widget.AutoCompleteTextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -137,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
         btTodayAppointment.setOnClickListener(v -> {
             if (currentUser != null) {
-                Intent i = new Intent(MainActivity.this, DoctorSelectionPage.class);
+                Intent i = new Intent(MainActivity.this, TodaysAppointment.class);
                 startActivity(i);
             }
             else {

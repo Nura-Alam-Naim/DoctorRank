@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +33,7 @@ public class UpcomingAppointment extends AppCompatActivity {
     private UpcomingAppointmentListAdapter adapter;
     private ArrayList<UserBooking> upcomingAppointments = new ArrayList<>();
     private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    private TextView tvNoAppointments;
 
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private final Handler handler = new Handler(Looper.getMainLooper());
@@ -42,6 +45,7 @@ public class UpcomingAppointment extends AppCompatActivity {
 
         lvUpComingAppointments = findViewById(R.id.lvUpComingAppointments);
         btBack = findViewById(R.id.btBack);
+        tvNoAppointments = findViewById(R.id.tvNoAppointments);
 
         adapter = new UpcomingAppointmentListAdapter(this, upcomingAppointments);
         lvUpComingAppointments.setAdapter(adapter);
@@ -83,6 +87,13 @@ public class UpcomingAppointment extends AppCompatActivity {
                     upcomingAppointments.clear();
                     upcomingAppointments.addAll(localList);
                     adapter.notifyDataSetChanged();
+                    if (upcomingAppointments.isEmpty()) {
+                        tvNoAppointments.setVisibility(View.VISIBLE);
+                        lvUpComingAppointments.setVisibility(View.GONE);
+                    } else {
+                        tvNoAppointments.setVisibility(View.GONE);
+                        lvUpComingAppointments.setVisibility(View.VISIBLE);
+                    }
                 });
 
             }).addOnFailureListener(e ->

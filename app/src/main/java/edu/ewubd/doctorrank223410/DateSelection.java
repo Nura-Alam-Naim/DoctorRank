@@ -102,7 +102,6 @@ public class DateSelection extends AppCompatActivity {
                         .setValue(booking)
                         .addOnSuccessListener(aVoid -> {
                             db.child("user_bookings").child(userId).child(bookingKey).setValue(userBooking);
-
                             Intent intent = new Intent(DateSelection.this, confirmation.class);
                             intent.putExtra("appointmentDate", selectedDate);
                             intent.putExtra("appointmentTime", chosenSlot);
