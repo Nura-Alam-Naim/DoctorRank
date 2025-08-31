@@ -66,7 +66,6 @@ public class UpdatePass extends AppCompatActivity {
                     user.updatePassword(newPassword).addOnCompleteListener(updateTask -> {
                         if (updateTask.isSuccessful()) {
                             Toast.makeText(this, "Password updated successfully", Toast.LENGTH_SHORT).show();
-                            // redirect to user profile
                             Intent intent = new Intent(UpdatePass.this, UserProfilePage.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);

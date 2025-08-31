@@ -40,10 +40,7 @@
         android:textSize="32sp"
         android:textStyle="bold"
         android:layout_gravity="center"/>
-
-    <!-- Spacer to push button to bottom -->
-
-    <!-- Get Started Button -->
+    >
     <Button
         android:id="@+id/btGetStarted"
         android:layout_marginTop="260dp"

@@ -97,7 +97,7 @@ public class UpcomingAppointment extends AppCompatActivity {
 
         String userId = FirebaseAuth.getInstance().getUid();
         if (userId != null) {
-            loadUpcomingAppointments(userId);  // Reload the list of appointments
+            loadUpcomingAppointments(userId);
         } else {
             Toast.makeText(this, "Please login first", Toast.LENGTH_SHORT).show();
         }

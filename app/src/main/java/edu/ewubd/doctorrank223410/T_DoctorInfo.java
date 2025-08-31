@@ -15,10 +15,10 @@ public class T_DoctorInfo {
 
     public Map<String, List<String>> schedule;
 
-    // REQUIRED by Firebase (empty constructor)
-    public T_DoctorInfo() {}
+    public T_DoctorInfo() {
 
-    // Optional constructor
+    }
+
     public T_DoctorInfo(String id, String name, String speciality, float rating, int roomNo,
                         String picture, int charge, String BDMC,
                         Map<String, List<String>> schedule) {

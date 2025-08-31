@@ -61,7 +61,6 @@ public class MyAppointments extends AppCompatActivity {
                     .getReference("user_bookings")
                     .child(userId);
 
-            // still async, but runs inside our executor thread
             ref.get().addOnSuccessListener(snapshot -> {
                 ArrayList<UserBooking> localList = new ArrayList<>();
                 for (DataSnapshot child : snapshot.getChildren()) {
@@ -72,7 +71,6 @@ public class MyAppointments extends AppCompatActivity {
                     }
                 }
 
-                // push result back to UI thread
                 handler.post(() -> {
                     appointmentList.clear();
                     appointmentList.addAll(localList);

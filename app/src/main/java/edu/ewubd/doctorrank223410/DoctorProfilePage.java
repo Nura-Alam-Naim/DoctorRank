@@ -24,7 +24,7 @@ public class DoctorProfilePage extends AppCompatActivity {
     private ImageView ivDoctorPicture;
     private TextView tvDoctorName, tvDoctorQualification, tvDoctorRating, tvDoctorBMDCno, tvDoctorCharge;
     private Button btBack, btBookNow;
-    private ListView lvSchedule;  // NEW – to show schedule
+    private ListView lvSchedule;
     private String doctorId;
 
     @Override
@@ -37,7 +37,6 @@ public class DoctorProfilePage extends AppCompatActivity {
 
         setContentView(R.layout.activity_doctor_profile_page);
 
-        // UI references
         ivDoctorPicture = findViewById(R.id.ivDoctorPicture);
         tvDoctorName = findViewById(R.id.tvDoctorName);
         tvDoctorQualification = findViewById(R.id.tvDoctorQualification);
@@ -48,7 +47,6 @@ public class DoctorProfilePage extends AppCompatActivity {
         btBookNow = findViewById(R.id.btBookNow);
         lvSchedule = findViewById(R.id.lvSchedule); // NEW
 
-        // Fetch doctor from DB
         T_DoctorInfo doctor = DoctorsDB.get(this).getById(doctorId);
 
         if (doctor != null) {
@@ -58,7 +56,7 @@ public class DoctorProfilePage extends AppCompatActivity {
             tvDoctorBMDCno.setText(doctor.BDMC);
             tvDoctorCharge.setText("Charge: " + String.valueOf(doctor.charge));
 
-            // Show picture
+
             if (doctor.picture != null && !doctor.picture.isEmpty()) {
                 try {
                     byte[] bytes = Base64.decode(doctor.picture, Base64.DEFAULT);
@@ -72,10 +70,9 @@ public class DoctorProfilePage extends AppCompatActivity {
             ArrayList<ScheduleItem> scheduleItems = new ArrayList<>();
             if (doctor.schedule != null && !doctor.schedule.isEmpty()) {
                 for (String day : doctor.schedule.keySet()) {
-                    // Add day header
                     scheduleItems.add(new ScheduleItem(day, true));
 
-                    // Add slots
+
                     List<String> slotList = doctor.schedule.get(day);
                     if (slotList != null) {
                         ArrayList<String> slots = new ArrayList<>(slotList);
@@ -86,7 +83,7 @@ public class DoctorProfilePage extends AppCompatActivity {
                 }
             }
 
-            // Attach adapter
+
             ScheduleListAdapter adapter = new ScheduleListAdapter(this, scheduleItems);
             lvSchedule.setAdapter(adapter);
 
@@ -94,10 +91,10 @@ public class DoctorProfilePage extends AppCompatActivity {
             Toast.makeText(this, "Doctor Fetching Failed", Toast.LENGTH_SHORT).show();
         }
 
-        // Back button
+
         btBack.setOnClickListener(v -> finish());
 
-        // Book Now button
+
         btBookNow.setOnClickListener(v -> {
             String userId = FirebaseAuth.getInstance().getUid();
             if(userId == null) {

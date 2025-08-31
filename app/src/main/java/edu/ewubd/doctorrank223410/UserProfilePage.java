@@ -55,28 +55,26 @@ public class UserProfilePage extends AppCompatActivity {
             ref.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     user = task.getResult().getValue(T_Users.class);
-                    if (user != null) {
-                        tvName.setText(user.name);
-                        tvEmail.setText(user.email);
-                        tvPhone.setText(user.phone);
-                        tvDOB.setText(user.dob);
-                        tvHeight.setText(user.height);
-                        tvWeight.setText(user.weight);
-                        tvGender.setText(user.gender);
 
-                        if (user.image != null && !user.image.isEmpty()) {
-                            try {
-                                byte[] bytes = Base64.decode(user.image, Base64.DEFAULT);
-                                Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                ivProfilePicture.setImageBitmap(bmp);
-                                base64String = user.image;
-                            } catch (Exception e) {
-                                Toast.makeText(this, "Failed to decode image", Toast.LENGTH_SHORT).show();
-                            }
+                    tvName.setText(user.name);
+                    tvEmail.setText(user.email);
+                    tvPhone.setText(user.phone);
+                    tvDOB.setText(user.dob);
+                    tvHeight.setText(user.height);
+                    tvWeight.setText(user.weight);
+                    tvGender.setText(user.gender);
+
+                    if (user.image != null && !user.image.isEmpty()) {
+                        try {
+                            byte[] bytes = Base64.decode(user.image, Base64.DEFAULT);
+                            Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                            ivProfilePicture.setImageBitmap(bmp);
+                            base64String = user.image;
+                        } catch (Exception e) {
+                            Toast.makeText(this, "Failed to decode image", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(this, "User record is null", Toast.LENGTH_SHORT).show();
                     }
+
                 } else {
                     Toast.makeText(this, "Failed to fetch user: " + task.getException(), Toast.LENGTH_SHORT).show();
                 }

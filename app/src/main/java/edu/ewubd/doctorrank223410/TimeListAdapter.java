@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class TimeListAdapter extends ArrayAdapter<String> {
 
     private final Context context;
-    private final ArrayList<String> slots;        // All slots for the day
-    private final ArrayList<String> bookedSlots;  // Already booked slots
-    private String selectedSlot = null;           // Track user selection
+    private final ArrayList<String> slots;
+    private final ArrayList<String> bookedSlots;
+    private String selectedSlot = null;
 
     public TimeListAdapter(@NonNull Context context,
                            @NonNull ArrayList<String> slots,
@@ -40,24 +40,23 @@ public class TimeListAdapter extends ArrayAdapter<String> {
 
         btnSlot.setText(slot);
 
-        // Disable button if booked
         if (bookedSlots.contains(slot)) {
             btnSlot.setEnabled(false);
-            btnSlot.setBackgroundColor(0xFFAAAAAA); // gray for booked
+            btnSlot.setBackgroundColor(0xFFAAAAAA);
         } else {
             btnSlot.setEnabled(true);
-            btnSlot.setBackgroundColor(0xFF06A9B1); // teal for available
+            btnSlot.setBackgroundColor(0xFF06A9B1);
         }
 
-        // Highlight selected slot
+
         if (slot.equals(selectedSlot)) {
-            btnSlot.setBackgroundColor(0xFFF29E23); // orange highlight
+            btnSlot.setBackgroundColor(0xFFF29E23);
         }
 
-        // Handle click
+
         btnSlot.setOnClickListener(v -> {
             selectedSlot = slot;
-            notifyDataSetChanged(); // refresh UI so only one button looks selected
+            notifyDataSetChanged();
         });
 
         return convertView;

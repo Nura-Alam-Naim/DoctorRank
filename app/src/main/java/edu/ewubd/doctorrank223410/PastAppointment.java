@@ -30,7 +30,6 @@ public class PastAppointment extends AppCompatActivity {
     private ArrayList<UserBooking> pastAppointments = new ArrayList<>();
 
     private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-    // match this format with how you save `date` in Firebase
 
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private final Handler handler = new Handler(Looper.getMainLooper());

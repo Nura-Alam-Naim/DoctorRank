@@ -6,7 +6,6 @@
     android:padding="12dp"
     android:background="#FFFFFF"
     android:layout_marginBottom="12dp">
-    <!-- Doctor Photo -->
     <ImageView
         android:id="@+id/doctorPhoto"
         android:layout_width="80dp"
@@ -14,7 +13,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginEnd="12dp"/>
 
-    <!-- Doctor Name -->
     <TextView
         android:id="@+id/doctorName"
         android:layout_width="wrap_content"
@@ -26,7 +24,7 @@
         android:layout_toEndOf="@id/doctorPhoto"
         android:layout_alignTop="@id/doctorPhoto"/>
 
-    <!-- Doctor Rating -->
+
     <RatingBar
         android:id="@+id/doctorRating"
         style="?android:attr/ratingBarStyleSmall"
@@ -42,7 +40,6 @@
         android:layout_below="@id/doctorName"
         android:layout_marginTop="4dp"/>
 
-    <!-- Doctor Info -->
     <TextView
         android:id="@+id/doctorSpeciality"
         android:layout_width="140dp"
@@ -55,10 +52,6 @@
         android:layout_toEndOf="@id/doctorPhoto"
         android:layout_below="@id/doctorRating"
         android:layout_marginTop="4dp"/>
-<!--    room no-->
-
-
-    <!-- Profile Button -->
 
     <TextView
         android:id="@+id/doctorCharge"
@@ -98,7 +91,6 @@
         android:backgroundTint="#f29e23"
         android:textSize="15dp"
         android:textStyle="bold" />
-    <!-- Book Now Button -->
     <Button
         android:id="@+id/bookNow"
         android:layout_width="120dp"

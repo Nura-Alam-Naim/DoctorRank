@@ -4,7 +4,7 @@ public class T_Users {
     public String name, email, phone, password, gender, dob, height, weight, image, uid;
 
     public T_Users() {
-        // Default constructor required for calls to DataSnapshot.getValue(T_Users.class)
+
     }
 
     public T_Users(String name, String email, String phone, String password,
@@ -22,7 +22,6 @@ public class T_Users {
         this.uid = uid;
     }
 
-    // --- Getters and Setters ---
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 

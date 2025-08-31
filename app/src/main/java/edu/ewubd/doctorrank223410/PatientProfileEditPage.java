@@ -147,17 +147,8 @@ public class PatientProfileEditPage extends AppCompatActivity {
                 .getReference("users")
                 .child(uid);
 
-        T_Users updatedUser = new T_Users(
-                name,
-                currentUser.getEmail(),
-                phone,
-                "Updated",
-                gender,
-                dob,
-                height,
-                weight,
-                base64String,
-                uid
+        T_Users updatedUser = new T_Users(name, currentUser.getEmail(), phone, "Updated", gender, dob, height,
+                weight, base64String, uid
         );
 
         ref.setValue(updatedUser).addOnCompleteListener(task -> {

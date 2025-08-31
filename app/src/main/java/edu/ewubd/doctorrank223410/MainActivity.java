@@ -25,9 +25,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.SimpleDateFormat;   // use java.text
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;           // use java.util
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 

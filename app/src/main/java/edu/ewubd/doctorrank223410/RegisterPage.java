@@ -179,7 +179,6 @@ public class RegisterPage extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             try {
-                                // Safer way: always get current user from FirebaseAuth
                                 FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                                 if (firebaseUser == null) {
                                     Log.e("RegisterPage", "firebaseUser is NULL");
@@ -192,33 +191,20 @@ public class RegisterPage extends AppCompatActivity {
 
                                 Toast.makeText(RegisterPage.this, "Account created successfully", Toast.LENGTH_SHORT).show();
 
-                                // Get database reference
                                 FDB = FirebaseDatabase.getInstance();
                                 ref = FDB.getReference("users");
                                 Log.d("RegisterPage", "DB ref path: " + ref.toString());
 
-                                // Build user object
                                 Log.d("RegisterPage", "Creating T_Users object...");
                                 T_Users user = new T_Users(
-                                        name,
-                                        email,
-                                        phone,
-                                        pass,
-                                        gender,
-                                        dob,
-                                        height,
-                                        weight,
-                                        image,
-                                        userId
+                                        name, email, phone, pass, gender, dob, height, weight, image, userId
                                 );
                                 Log.d("RegisterPage", "T_Users object created: " + user.name);
 
-                                // Save to Firebase
                                 ref.child(userId).setValue(user)
                                         .addOnSuccessListener(aVoid -> {
                                             Log.d("RegisterPage", "User saved in DB successfully");
                                             Toast.makeText(RegisterPage.this, "User saved in DB", Toast.LENGTH_SHORT).show();
-                                            // Navigate only after DB write success
                                             Intent i = new Intent(RegisterPage.this, LoginPage.class);
                                             startActivity(i);
                                             finish();
@@ -242,7 +228,6 @@ public class RegisterPage extends AppCompatActivity {
 
         finish();
     }
-
     public boolean isValidEmailAddress(String email) {
         String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);

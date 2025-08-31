@@ -161,7 +161,7 @@
         </TableRow>
     </TableLayout>
 
-        <!--sixth row-->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -193,8 +193,6 @@
                         android:textColor="#000000"
                         android:layout_height="wrap_content"
                         android:text="Male"/>
-/>
-
                     <RadioButton
                         android:id="@+id/cbFemale"
                         android:layout_width="0dp"
