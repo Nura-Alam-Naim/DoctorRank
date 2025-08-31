@@ -15,9 +15,8 @@ import java.util.Map;
 
 public class DoctorsDB extends SQLiteOpenHelper {
     private static final String DB_NAME = "Doctors.db";
-    private static final int DB_VERSION = 2;  // bumped version since schema changed
+    private static final int DB_VERSION = 2;
 
-    // ---- Table + columns
     private static final String T = "doctors";
     private static final String C_ID = "id";
     private static final String C_NAME = "name";
@@ -27,7 +26,7 @@ public class DoctorsDB extends SQLiteOpenHelper {
     private static final String C_PIC = "picture";
     private static final String C_CHARGE = "charge";
     private static final String C_BDMC = "BDMC";
-    private static final String C_SCHEDULE = "schedule"; // NEW JSON column
+    private static final String C_SCHEDULE = "schedule";
 
     private static DoctorsDB instance;
     private static final Gson gson = new Gson();
@@ -52,7 +51,7 @@ public class DoctorsDB extends SQLiteOpenHelper {
                 C_PIC + " TEXT," +
                 C_CHARGE + " INTEGER," +
                 C_BDMC + " TEXT," +
-                C_SCHEDULE + " TEXT" +    // store schedule as JSON
+                C_SCHEDULE + " TEXT" +
                 ")");
     }
 
@@ -62,67 +61,50 @@ public class DoctorsDB extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // ---- Save all doctors
     public void saveAll(ArrayList<T_DoctorInfo> doctors) {
         SQLiteDatabase db = getWritableDatabase();
-        db.beginTransaction();
-        try {
-            for (T_DoctorInfo d : doctors) {
-                if (d == null || d.id == null || d.id.isEmpty()) continue;
-                ContentValues cv = new ContentValues();
-                cv.put(C_ID, d.id);
-                cv.put(C_NAME, d.name);
-                cv.put(C_SPEC, d.speciality);
-                cv.put(C_RATING, d.rating);
-                cv.put(C_ROOM, d.roomNo);
-                cv.put(C_PIC, d.picture);
-                cv.put(C_CHARGE, d.charge);
-                cv.put(C_BDMC, d.BDMC);
-
-                // Convert Map -> JSON
-                if (d.schedule != null) {
-                    String json = gson.toJson(d.schedule);
-                    cv.put(C_SCHEDULE, json);
-                } else {
-                    cv.put(C_SCHEDULE, "{}");
-                }
-
-                db.insertWithOnConflict(T, null, cv, SQLiteDatabase.CONFLICT_REPLACE);
+        for (T_DoctorInfo d : doctors) {
+            if (d == null || d.id == null || d.id.isEmpty()) continue;
+            ContentValues cv = new ContentValues();
+            cv.put(C_ID, d.id);
+            cv.put(C_NAME, d.name);
+            cv.put(C_SPEC, d.speciality);
+            cv.put(C_RATING, d.rating);
+            cv.put(C_ROOM, d.roomNo);
+            cv.put(C_PIC, d.picture);
+            cv.put(C_CHARGE, d.charge);
+            cv.put(C_BDMC, d.BDMC);
+            if (d.schedule != null) {
+                String json = gson.toJson(d.schedule);
+                cv.put(C_SCHEDULE, json);
+            } else {
+                cv.put(C_SCHEDULE, "{}");
             }
-            db.setTransactionSuccessful();
-        } finally {
-            db.endTransaction();
+            db.insertWithOnConflict(T, null, cv, SQLiteDatabase.CONFLICT_REPLACE);
         }
     }
-    public void save(T_DoctorInfo d) {
-        SQLiteDatabase db = getWritableDatabase();
-        db.beginTransaction();
-        try {
-                if (d == null || d.id == null || d.id.isEmpty())
-                {
-                    return;
-                }
-                ContentValues cv = new ContentValues();
-                cv.put(C_ID, d.id);
-                cv.put(C_NAME, d.name);
-                cv.put(C_SPEC, d.speciality);
-                cv.put(C_RATING, d.rating);
-                cv.put(C_ROOM, d.roomNo);
-                cv.put(C_PIC, d.picture);
-                cv.put(C_CHARGE, d.charge);
-                cv.put(C_BDMC, d.BDMC);
 
-                if (d.schedule != null) {
-                    String json = gson.toJson(d.schedule);
-                    cv.put(C_SCHEDULE, json);
-                } else {
-                    cv.put(C_SCHEDULE, "{}");
-                }
-                db.insertWithOnConflict(T, null, cv, SQLiteDatabase.CONFLICT_REPLACE);
-            db.setTransactionSuccessful();
-        } finally {
-            db.endTransaction();
+    public void save(T_DoctorInfo d) {
+        if (d == null || d.id == null || d.id.isEmpty()) {
+            return;
         }
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(C_ID, d.id);
+        cv.put(C_NAME, d.name);
+        cv.put(C_SPEC, d.speciality);
+        cv.put(C_RATING, d.rating);
+        cv.put(C_ROOM, d.roomNo);
+        cv.put(C_PIC, d.picture);
+        cv.put(C_CHARGE, d.charge);
+        cv.put(C_BDMC, d.BDMC);
+        if (d.schedule != null) {
+            String json = gson.toJson(d.schedule);
+            cv.put(C_SCHEDULE, json);
+        } else {
+            cv.put(C_SCHEDULE, "{}");
+        }
+        db.insertWithOnConflict(T, null, cv, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
     public ArrayList<T_DoctorInfo> GetAll() {
@@ -141,7 +123,6 @@ public class DoctorsDB extends SQLiteOpenHelper {
         return out;
     }
 
-    // ---- Get doctor by ID
     public T_DoctorInfo getById(String id) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.query(T, null, C_ID + "=?", new String[]{id}, null, null, null);
@@ -153,13 +134,11 @@ public class DoctorsDB extends SQLiteOpenHelper {
         }
     }
 
-    // ---- Clear all doctors
     public void clearAll() {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(T, null, null);
     }
 
-    // ---- Convert Cursor -> DoctorInfo
     private T_DoctorInfo fromCursor(Cursor c) {
         T_DoctorInfo d = new T_DoctorInfo();
         d.id = c.getString(c.getColumnIndexOrThrow(C_ID));
@@ -170,8 +149,6 @@ public class DoctorsDB extends SQLiteOpenHelper {
         d.picture = c.getString(c.getColumnIndexOrThrow(C_PIC));
         d.charge = c.getInt(c.getColumnIndexOrThrow(C_CHARGE));
         d.BDMC = c.getString(c.getColumnIndexOrThrow(C_BDMC));
-
-        // Convert JSON -> Map<String, ArrayList<String>>
         String json = c.getString(c.getColumnIndexOrThrow(C_SCHEDULE));
         if (json != null && !json.isEmpty()) {
             Type type = new TypeToken<Map<String, ArrayList<String>>>() {}.getType();
