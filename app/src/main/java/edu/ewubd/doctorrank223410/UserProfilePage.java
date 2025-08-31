@@ -87,10 +87,7 @@ public class UserProfilePage extends AppCompatActivity {
 
         btLogout.setOnClickListener(v -> {
             mAuth.signOut();
-            SharedPreferences sp = getSharedPreferences("login", MODE_PRIVATE);
-            SharedPreferences.Editor editor = sp.edit();
-            editor.putBoolean("rememberLogin", false);
-            editor.apply();
+            getSharedPreferences("my_pr", MODE_PRIVATE).edit().putBoolean("rememberLogin", false).apply();
             Toast.makeText(UserProfilePage.this, "Logged out successfully", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(UserProfilePage.this, MainActivity.class));
             finishAffinity();

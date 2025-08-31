@@ -34,6 +34,10 @@ public class Welcome extends AppCompatActivity {
         }
         if(isDone)
         {
+            if(!rememberLogin)
+            {
+                FirebaseAuth.getInstance().signOut();
+            }
             Intent i=new Intent(Welcome.this, MainActivity.class);
             startActivity(i);
             finishAffinity();

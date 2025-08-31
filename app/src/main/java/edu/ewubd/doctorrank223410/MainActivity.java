@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
+                getSharedPreferences("my_pr", MODE_PRIVATE).edit().putBoolean("rememberLogin", false).apply();
                 startActivity(new Intent(MainActivity.this, MainActivity.class));
                 finishAffinity();
             }

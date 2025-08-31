@@ -33,23 +33,23 @@ public class LoginPage extends AppCompatActivity {
             return;
         }
 
-        sp = getSharedPreferences("login", MODE_PRIVATE);
+        sp = getSharedPreferences("my_pr", MODE_PRIVATE);
 
-        boolean rememberLogin = sp.getBoolean("rememberLogin", false);
-        if (rememberLogin) {
-            String email = sp.getString("email", "");
-            String password = sp.getString("password", "");
-            if (!email.isEmpty() && !password.isEmpty()) {
-                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(LoginPage.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginPage.this, MainActivity.class));
-                        finish();
-                    }
-                });
-                return;
-            }
-        }
+//        boolean rememberLogin = sp.getBoolean("rememberLogin", false);
+//        if (rememberLogin) {
+//            String email = sp.getString("email", "");
+//            String password = sp.getString("password", "");
+//            if (!email.isEmpty() && !password.isEmpty()) {
+//                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        Toast.makeText(LoginPage.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
+//                        startActivity(new Intent(LoginPage.this, MainActivity.class));
+//                        finish();
+//                    }
+//                });
+//                return;
+//            }
+//        }
 
         setContentView(R.layout.activity_login_page);
 
